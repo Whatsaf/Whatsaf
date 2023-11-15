@@ -1,0 +1,337 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Whatsaf{% endblock %}
+{% block body %}
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero">
+    <div class="container position-relative">
+      <div class="row gy-5" data-aos="fade-in">
+        <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
+          {% if request.user.is_authenticated %}
+          <h2>Hello, <span>{{request.user.first_name}}👋</span></h2>
+          {% else %}
+          <h2>Welcome to <span>Whatsaf</span></h2>
+          {% endif %}
+          <p>Welcome to Whatsaf, where communication meets innovation! Dive into effortless messaging with our cutting-edge features and experience a new era of seamless connections. Join us for a smarter way to use WhatsApp!</p>
+          <div class="d-flex justify-content-center justify-content-lg-start">
+            {% if request.user.is_authenticated %}
+            <a href="/dashboard" class="btn-get-started">Dashboard</a>
+          {% else %}
+          <a href="/signup" class="btn-get-started">Get Started</a>
+          {% endif %}
+            <a href="{% static 'vid//Whatsaf Video.mp4' %}" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2">
+          <img src="{% static 'img/hero-img.svg' %}" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="100">
+        </div>
+      </div>
+    </div>
+
+    <div class="icon-boxes position-relative">
+      <div class="container position-relative">
+        <div class="row gy-4 mt-5">
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </section>
+  <!-- End Hero Section -->
+
+  <main id="main">
+
+    <!-- ======= About Us Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>About Us</h2>
+          <p>At Whatsaf, we are passionate about redefining the way you communicate on WhatsApp. Our journey began with a vision to simplify and enhance messaging experiences. Committed to innovation, we've crafted a suite of automation tools and features designed to make communication effortless. With a focus on user-friendly solutions, security, and cutting-edge technology, Whatsaf is your go-to destination for a seamless and enriched WhatsApp experience. Join us in embracing a future where messaging is not just a tool but an elevated and personalized connection.</p>
+        </div>
+
+        <div class="row gy-4">
+          <div class="col-lg-6">
+            <h3 style="text-align: center;">Effortless Communication</h3>
+            <img src="{% static 'img/about.jpg' %}" class="img-fluid rounded-4 mb-4" alt="">
+          </div>
+          <div class="col-lg-6">
+            <div class="content ps-0 ps-lg-5">
+              <p class="fst-italic">
+                Transform your messaging experience with our smart automation tools, enabling you to schedule messages, set auto-replies, and streamline routine tasks effortlessly.
+              </p>
+              <p>
+                Enhance your efficiency with time-saving messaging tools and productivity features, ensuring you make the most out of your WhatsApp interactions.
+              </p>
+
+              <div class="position-relative mt-4">
+                <img src="{% static 'img/about-2.jpg' %}" class="img-fluid rounded-4" alt="">
+                <a href="{% static 'vid//Whatsaf Video.mp4' %}" class="glightbox play-btn"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Us Section -->
+
+    <!-- ======= Pricing Section ======= -->
+    <section id="pricing" class="pricing sections-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>Pricing</h2>
+          <p>We have curated a range of tailored plans to meet your specific needs and elevate your Whatsaf experience.</p>
+        </div>
+        <br><br>
+        <div class="row g-4 py-lg-6" data-aos="zoom-out" data-aos-delay="100">
+
+          <div class="col-lg-4">
+            <div class="pricing-item">
+              <h3>Free Plan</h3>
+              <div class="icon">
+                <i class="bi bi-emoji-smile"></i>
+              </div>
+              <h4><sup>₹</sup>0<span> / month</span></h4>
+              <ul>
+                <li><i class="bi bi-check"></i> Message Timer</li>
+                <li><i class="bi bi-check"></i> Occasional Wisher</li>
+                <li><i class="bi bi-check"></i> Chat Sentiment</li>
+                <li><i class="bi bi-check"></i> Channels Comment Section</li>
+                <li><i class="bi bi-check"></i> WhatsApp Addiction</li>
+                <li><i class="bi bi-check"></i> Daily Personalized Quotes</li>
+                <li class="na"><i class="bi bi-x"></i> <span>Vanish Mode</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Online Status</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Exclusionary Group Messaging</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Parental Controls</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Talk to AI</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Focused Mode</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Access to Beta Version</span></li>
+              </ul>
+              {% if data.Premium %}
+              {% else %}
+              <div class="text-center"><a href="/buy/free" class="buy-btn">Explore Now</a></div>
+              {% endif %}
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-lg-4">
+            <div class="pricing-item featured">
+              <h3>Alpha Plan | Monthly</h3>
+              <div class="icon">
+                <i class="bi bi-emoji-heart-eyes"></i>
+              </div>
+
+              <h4><sup></sup>Plan Coming Soon!!<span></span></h4>
+              <ul>
+                <li><i class="bi bi-check"></i> Message Timer</li>
+                <li><i class="bi bi-check"></i> Occasional Wisher</li>
+                <li><i class="bi bi-check"></i> Chat Sentiment</li>
+                <li><i class="bi bi-check"></i> Channels Comment Section</li>
+                <li><i class="bi bi-check"></i> WhatsApp Addiction</li>
+                <li><i class="bi bi-check"></i> Daily Personalized Quotes</li>
+                <li><i class="bi bi-check"></i> Vanish Mode</li>
+                <li><i class="bi bi-check"></i> Online Status</li>
+                <li><i class="bi bi-check"></i> Exclusionary Group Messaging</li>
+                <li><i class="bi bi-check"></i> Parental Controls</li>
+                <li><i class="bi bi-check"></i> Talk to AI</li>
+                <li><i class="bi bi-check"></i> Focused Mode</li>
+                <li class="na"><i class="bi bi-x"></i> <span>Access to Beta Version</span></li>
+              </ul>
+              {% if data.Premium %}
+              <div class="text-center"><a class="buy-btn">Already on Premium!!</a></div>
+              {% else %}
+              <div class="text-center"><a href="/buy/alpha" class="buy-btn">Explore Now</a></div>
+              {% endif %}
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-lg-4">
+            <div class="pricing-item">
+              <h3>Giga Plan | Yearly</h3>
+              <div class="icon">
+                <i class="bi bi-emoji-sunglasses"></i>
+              </div>
+              <h4><sup></sup>Plan Coming Soon!!<span></span></h4>
+              <ul>
+                <li><i class="bi bi-check"></i> Message Timer</li>
+                <li><i class="bi bi-check"></i> Occasional Wisher</li>
+                <li><i class="bi bi-check"></i> Chat Sentiment</li>
+                <li><i class="bi bi-check"></i> Channels Comment Section</li>
+                <li><i class="bi bi-check"></i> WhatsApp Addiction</li>
+                <li><i class="bi bi-check"></i> Daily Personalized Quotes</li>
+                <li><i class="bi bi-check"></i> Vanish Mode</li>
+                <li><i class="bi bi-check"></i> Online Status</li>
+                <li><i class="bi bi-check"></i> Exclusionary Group Messaging</li>
+                <li><i class="bi bi-check"></i> Parental Controls</li>
+                <li><i class="bi bi-check"></i> Talk to AI</li>
+                <li><i class="bi bi-check"></i> Focused Mode</li>
+                <li><i class="bi bi-check"></i> Access to Beta Version</li>
+              </ul>
+              {% if data.Premium %}
+              <div class="text-center"><a class="buy-btn">Already on Premium!!</a></div>
+              {% else %}
+              <div class="text-center"><a href="/buy/giga" class="buy-btn">Explore Now</a></div>
+              {% endif %}
+            </div>
+          </div><!-- End Pricing Item -->
+
+        </div>
+
+      </div>
+      <br><br>
+    </section><!-- End Pricing Section -->
+
+    <!-- ======= Frequently Asked Questions Section ======= -->
+    <section id="faq" class="faq">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4">
+            <div class="content px-xl-5">
+              <h3>Frequently Asked <strong>Questions</strong></h3>
+              <p>
+                We've compiled a comprehensive list of Frequently Asked Questions to provide you with quick answers and insights, ensuring a smooth and informed experience with Whatsaf.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-8">
+
+            <div class="accordion accordion-flush" id="faqlist" data-aos="fade-up" data-aos-delay="100">
+
+              {% for f in faq|slice:"::-1" %}
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
+                    {{f.Question}}
+                  </button>
+                </h3>
+                <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                  {{f.Answer}}  
+                  </div>
+                </div>
+              </div><!-- # Faq item-->
+              {% endfor %}
+
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Frequently Asked Questions Section -->
+
+    <!-- ======= Recent Blog Posts Section ======= -->
+    <section id="recent-posts" class="recent-posts sections-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>Recent Blog Posts</h2>
+          <p>Our latest blog posts are...</p>
+        </div>
+
+        <div class="row gy-4">
+
+          <div class="col-xl-4 col-md-6">
+            <article>
+
+              <div class="post-img">
+                <img src="{% static 'img/blog/blog-3.jpg' %}" alt="" class="img-fluid">
+              </div>
+
+              <p class="post-category">Informative</p>
+
+              <h2 class="title">
+                <a href="blog-details.html">How can you post your comments on Whatsapp channel posts.</a>
+              </h2>
+
+              <div class="d-flex align-items-center">
+                <div class="post-meta">
+                  <p class="post-author">Anirban Bhattacharya</p>
+                  <p class="post-date">
+                    <time datetime="2022-01-01">Nov 8, 2023</time>
+                  </p>
+                </div>
+              </div>
+
+            </article>
+          </div><!-- End post list item -->
+
+        </div><!-- End recent posts list -->
+
+      </div>
+    </section><!-- End Recent Blog Posts Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>Contact Us</h2>
+          <p>We are availabe 24/7 for our customers...</p>
+        </div>
+
+        <div class="row gx-lg-0 gy-4">
+
+          <div class="col-lg-4">
+
+            <div class="info-container d-flex flex-column align-items-center justify-content-center">
+              <div class="info-item d-flex">
+                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                <div>
+                  <h4>Location:</h4>
+                  <p>Vadodara, Gujarat, India / Bharat</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex">
+                <i class="bi bi-envelope flex-shrink-0"></i>
+                <div>
+                  <h4>Email:</h4>
+                  <p>contact@whatsaf.in</p>
+                </div>
+                </div>
+
+              <div class="info-item d-flex">
+                <i class="bi bi-whatsapp flex-shrink-0"></i>
+                <div>
+                  <h4>WhatsApp:</h4>
+                  <p>+1 (940) 841-7836</p>
+                </div>
+                </div>
+                </div>
+
+          </div>
+
+          <div class="col-lg-8">
+            <form action="/contact" method="post" class="php-email-form">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="7" placeholder="Message" required></textarea>
+              </div>
+              <div class="text-center"><button type="submit">Message</button></div>
+              {% csrf_token %}
+            </form>
+          </div><!-- End Contact Form -->
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+  {% endblock %}

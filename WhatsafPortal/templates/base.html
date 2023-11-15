@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>{% block title %}{% endblock %}</title>
+  <meta content="Welcome to Whatsaf – Your Premier Destination for WhatsApp Automation and Enhanced Features. Revolutionize your communication experience with our innovative tools designed to simplify and streamline your interactions. Effortless Communication is our mission, and we're here to make staying connected easier than ever. Explore advanced messaging features, smart automation, and robust contact management. Choose Whatsaf for a personalized, secure, and cutting-edge WhatsApp experience. Join us and embrace a new era of communication efficiency today!" name="description">
+  <meta content="WhatsApp Automation, Effortless Communication, Smart Messaging Tools, WhatsApp Enhancements, Auto-Reply Solutions, Message Scheduling, Contact Management Tools, Advanced WhatsApp Features, Streamlined Messaging, Productivity Boosters for WhatsApp, Secure Messaging Solutions, Innovative WhatsApp Automation, Time-Saving Messaging Tools, Personalized WhatsApp Experience, Messaging Efficiency Solutions, Automated WhatsApp Tasks, Enhanced Multimedia Sharing, Customizable Messaging Solutions, Secure WhatsApp Communication, Efficient Contact Organization" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/Whatsaf icon.png' %}" rel="icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/main.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <section id="topbar" class="topbar d-flex align-items-center">
+  </section><!-- End Top Bar -->
+
+  <header id="header" class="header d-flex align-items-center">
+
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+      <a href="/" class="logo d-flex align-items-center">
+        <h1>Whatsaf</h1>
+      </a>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="/#about">About Us</a></li>
+          {% if request.user.is_authenticated %}
+          <li><a href="/dashboard">Dashboard</a></li>
+          {% else %}
+          <li><a href="/features">Features</a></li>
+          {% endif %}
+          <li><a href="/#pricing">Pricing</a></li>
+          <li><a href="/blogs">Blogs</a></li>
+          <li><a href="/#contact">Contact</a></li>
+          {% if request.user.is_authenticated %}
+          <li><a href="/signout">Sign Out</a></li>
+          <li><a href="/user-profile">Profile</a></li>
+          {% else %}
+          <li><a href="/signin">SignIN</a></li>
+          {% endif %}
+        </ul>
+      </nav><!-- .navbar -->
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+    </div>
+    <!-- End Header -->
+  </header><!-- End Header -->
+<!-- End Header -->
+{% for message in messages %}
+{% if messages %}
+          <div class="alert alert-{{message.tags}}" id="noty" role="alert">
+            <strong>Message: </strong> {{message}}
+          </div>
+          <script>
+            var milliseconds = 5000;
+setTimeout(function () {
+    document.getElementById('noty').remove();
+}, milliseconds);
+          </script>
+          {% endif %}
+{% endfor %}
+
+
+
+{% block body %}
+
+{% endblock %}
+
+
+
+
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-info">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span>Whatsaf</span>
+          </a>
+          <p>Unlock the power of effortless communication with Whatsaf – your ultimate companion for WhatsApp automation and cutting-edge features. Streamline your messaging experience, boost productivity, and stay connected like never before. Join us in redefining communication efficiency with Whatsaf!</p>
+          <div class="social-links d-flex mt-4">
+            <a href="#" class="twitter"><i class="bi bi-x"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-youtube"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4 style="color: white; text-align: left;">Useful Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/#about">About us</a></li>
+            <li><a href="/features">Features</a></li>
+            <li><a href="/signin">SignIN</a></li>
+            <li><a href="/signup">SignUP</a></li>
+            <li><a href="/terms-and-conditions">Terms and Conditions</a></li>
+          </ul>
+        </div>
+
+        <!-- <div class="col-lg-2 col-6 footer-links">
+          <h4 style="color: white; text-align: left;">Useful Links</h4>
+          <input type="text" name="" id="">
+        </div> -->
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4 style="color: white; text-align: left;">Contact Us</h4>
+          <p style="text-align: left;">
+            Vadodara - 390022<br>
+            Gujarat<br>
+            India / Bharat <br>
+            <strong>WhatsApp:</strong> +1 (940) 841-7836<br>
+            <strong>Email:</strong> contact@whatsaf.in<br>
+          </p>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container mt-4">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Whatsaf</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        Made by <strong><a href="https://whatsaf.in/">Whatsaf</a></strong>
+      </div>
+    </div>
+
+  </footer><!-- End Footer -->
+  <!-- End Footer -->
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

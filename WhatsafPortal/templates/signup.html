@@ -1,0 +1,415 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}SignUP | Whatsaf{% endblock %}
+{% block body %}
+
+    <style>
+        .signup-container {
+            background-color: #f6f3f3;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 400px;
+            max-width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .signup-container h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .form-group button {
+            background-color: #1ecd97;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-group button:hover {
+            background-color: #1ecd97;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkbox-group label {
+            margin-right: 10px;
+        }
+    </style>
+<br><br>
+    <center>
+      <div class="signup-container">
+        <h2 style="color: #1ecd97;">Sign UP</h2>
+        <form class="signup-form" action="/register" method="post" id="form">
+          <div class="form-group">
+            <label for="username">Name</label>
+            <input type="text" id="username" name="name" required placeholder="Ava Smith">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="you@example.in">
+      </div>
+      <div class="form-group">
+        <label for="email">Country</label>
+        <select required name = "country">
+          <option>Select</option>
+          <option placeholder="Afghanistan">Afghanistan</option>
+      <option placeholder="Albania">Albania</option>
+      <option placeholder="Algeria">Algeria</option>
+      <option placeholder="American Samoa">American Samoa</option>
+      <option placeholder="Andorra">Andorra</option>
+      <option placeholder="Angola">Angola</option>
+      <option placeholder="Anguilla">Anguilla</option>
+      <option placeholder="Antartica">Antarctica</option>
+      <option placeholder="Antigua and Barbuda">Antigua and Barbuda</option>
+      <option placeholder="Argentina">Argentina</option>
+      <option placeholder="Armenia">Armenia</option>
+      <option placeholder="Aruba">Aruba</option>
+      <option placeholder="Australia">Australia</option>
+      <option placeholder="Austria">Austria</option>
+      <option placeholder="Azerbaijan">Azerbaijan</option>
+      <option placeholder="Bahamas">Bahamas</option>
+      <option placeholder="Bahrain">Bahrain</option>
+      <option placeholder="Bangladesh">Bangladesh</option>
+      <option placeholder="Barbados">Barbados</option>
+      <option placeholder="Belarus">Belarus</option>
+      <option placeholder="Belgium">Belgium</option>
+      <option placeholder="Belize">Belize</option>
+      <option placeholder="Benin">Benin</option>
+      <option placeholder="Bermuda">Bermuda</option>
+      <option placeholder="Bhutan">Bhutan</option>
+      <option placeholder="Bolivia">Bolivia</option>
+      <option placeholder="Bosnia and Herzegowina">Bosnia and Herzegowina</option>
+      <option placeholder="Botswana">Botswana</option>
+      <option placeholder="Bouvet Island">Bouvet Island</option>
+      <option placeholder="Brazil">Brazil</option>
+      <option placeholder="British Indian Ocean Territory">British Indian Ocean Territory</option>
+      <option placeholder="Brunei Darussalam">Brunei Darussalam</option>
+      <option placeholder="Bulgaria">Bulgaria</option>
+      <option placeholder="Burkina Faso">Burkina Faso</option>
+      <option placeholder="Burundi">Burundi</option>
+      <option placeholder="Cambodia">Cambodia</option>
+      <option placeholder="Cameroon">Cameroon</option>
+      <option placeholder="Canada">Canada</option>
+      <option placeholder="Cape Verde">Cape Verde</option>
+      <option placeholder="Cayman Islands">Cayman Islands</option>
+      <option placeholder="Central African Republic">Central African Republic</option>
+      <option placeholder="Chad">Chad</option>
+      <option placeholder="Chile">Chile</option>
+      <option placeholder="China">China</option>
+      <option placeholder="Christmas Island">Christmas Island</option>
+      <option placeholder="Cocos Islands">Cocos (Keeling) Islands</option>
+      <option placeholder="Colombia">Colombia</option>
+      <option placeholder="Comoros">Comoros</option>
+      <option placeholder="Congo">Congo</option>
+      <option placeholder="Congo">Congo, the Democratic Republic of the</option>
+      <option placeholder="Cook Islands">Cook Islands</option>
+      <option placeholder="Costa Rica">Costa Rica</option>
+      <option placeholder="Cota D'Ivoire">Cote d'Ivoire</option>
+      <option placeholder="Croatia">Croatia (Hrvatska)</option>
+      <option placeholder="Cuba">Cuba</option>
+      <option placeholder="Cyprus">Cyprus</option>
+      <option placeholder="Czech Republic">Czech Republic</option>
+      <option placeholder="Denmark">Denmark</option>
+      <option placeholder="Djibouti">Djibouti</option>
+      <option placeholder="Dominica">Dominica</option>
+      <option placeholder="Dominican Republic">Dominican Republic</option>
+      <option placeholder="East Timor">East Timor</option>
+      <option placeholder="Ecuador">Ecuador</option>
+      <option placeholder="Egypt">Egypt</option>
+      <option placeholder="El Salvador">El Salvador</option>
+      <option placeholder="Equatorial Guinea">Equatorial Guinea</option>
+      <option placeholder="Eritrea">Eritrea</option>
+      <option placeholder="Estonia">Estonia</option>
+      <option placeholder="Ethiopia">Ethiopia</option>
+      <option placeholder="Falkland Islands">Falkland Islands (Malvinas)</option>
+      <option placeholder="Faroe Islands">Faroe Islands</option>
+      <option placeholder="Fiji">Fiji</option>
+      <option placeholder="Finland">Finland</option>
+      <option placeholder="France">France</option>
+      <option placeholder="France Metropolitan">France, Metropolitan</option>
+      <option placeholder="French Guiana">French Guiana</option>
+      <option placeholder="French Polynesia">French Polynesia</option>
+      <option placeholder="French Southern Territories">French Southern Territories</option>
+      <option placeholder="Gabon">Gabon</option>
+      <option placeholder="Gambia">Gambia</option>
+      <option placeholder="Georgia">Georgia</option>
+      <option placeholder="Germany">Germany</option>
+      <option placeholder="Ghana">Ghana</option>
+      <option placeholder="Gibraltar">Gibraltar</option>
+      <option placeholder="Greece">Greece</option>
+      <option placeholder="Greenland">Greenland</option>
+      <option placeholder="Grenada">Grenada</option>
+      <option placeholder="Guadeloupe">Guadeloupe</option>
+      <option placeholder="Guam">Guam</option>
+      <option placeholder="Guatemala">Guatemala</option>
+      <option placeholder="Guinea">Guinea</option>
+      <option placeholder="Guinea-Bissau">Guinea-Bissau</option>
+      <option placeholder="Guyana">Guyana</option>
+      <option placeholder="Haiti">Haiti</option>
+      <option placeholder="Heard and McDonald Islands">Heard and Mc Donald Islands</option>
+      <option placeholder="Holy See">Holy See (Vatican City State)</option>
+      <option placeholder="Honduras">Honduras</option>
+      <option placeholder="Hong Kong">Hong Kong</option>
+      <option placeholder="Hungary">Hungary</option>
+      <option placeholder="Iceland">Iceland</option>
+      <option selected placeholder="India">India</option>
+      <option placeholder="Indonesia">Indonesia</option>
+      <option placeholder="Iran">Iran (Islamic Republic of)</option>
+      <option placeholder="Iraq">Iraq</option>
+      <option placeholder="Ireland">Ireland</option>
+      <option placeholder="Israel">Israel</option>
+      <option placeholder="Italy">Italy</option>
+      <option placeholder="Jamaica">Jamaica</option>
+      <option placeholder="Japan">Japan</option>
+      <option placeholder="Jordan">Jordan</option>
+      <option placeholder="Kazakhstan">Kazakhstan</option>
+      <option placeholder="Kenya">Kenya</option>
+      <option placeholder="Kiribati">Kiribati</option>
+      <option placeholder="Democratic People's Republic of Korea">Korea, Democratic People's Republic of</option>
+      <option placeholder="Korea">Korea, Republic of</option>
+      <option placeholder="Kuwait">Kuwait</option>
+      <option placeholder="Kyrgyzstan">Kyrgyzstan</option>
+      <option placeholder="Lao">Lao People's Democratic Republic</option>
+      <option placeholder="Latvia">Latvia</option>
+      <option placeholder="Lebanon">Lebanon</option>
+      <option placeholder="Lesotho">Lesotho</option>
+      <option placeholder="Liberia">Liberia</option>
+      <option placeholder="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya</option>
+      <option placeholder="Liechtenstein">Liechtenstein</option>
+      <option placeholder="Lithuania">Lithuania</option>
+      <option placeholder="Luxembourg">Luxembourg</option>
+      <option placeholder="Macau">Macau</option>
+      <option placeholder="Macedonia">Macedonia, The Former Yugoslav Republic of</option>
+      <option placeholder="Madagascar">Madagascar</option>
+      <option placeholder="Malawi">Malawi</option>
+      <option placeholder="Malaysia">Malaysia</option>
+      <option placeholder="Maldives">Maldives</option>
+      <option placeholder="Mali">Mali</option>
+      <option placeholder="Malta">Malta</option>
+      <option placeholder="Marshall Islands">Marshall Islands</option>
+      <option placeholder="Martinique">Martinique</option>
+      <option placeholder="Mauritania">Mauritania</option>
+      <option placeholder="Mauritius">Mauritius</option>
+      <option placeholder="Mayotte">Mayotte</option>
+      <option placeholder="Mexico">Mexico</option>
+      <option placeholder="Micronesia">Micronesia, Federated States of</option>
+      <option placeholder="Moldova">Moldova, Republic of</option>
+      <option placeholder="Monaco">Monaco</option>
+      <option placeholder="Mongolia">Mongolia</option>
+      <option placeholder="Montserrat">Montserrat</option>
+      <option placeholder="Morocco">Morocco</option>
+      <option placeholder="Mozambique">Mozambique</option>
+      <option placeholder="Myanmar">Myanmar</option>
+      <option placeholder="Namibia">Namibia</option>
+      <option placeholder="Nauru">Nauru</option>
+      <option placeholder="Nepal">Nepal</option>
+      <option placeholder="Netherlands">Netherlands</option>
+      <option placeholder="Netherlands Antilles">Netherlands Antilles</option>
+      <option placeholder="New Caledonia">New Caledonia</option>
+      <option placeholder="New Zealand">New Zealand</option>
+      <option placeholder="Nicaragua">Nicaragua</option>
+      <option placeholder="Niger">Niger</option>
+      <option placeholder="Nigeria">Nigeria</option>
+      <option placeholder="Niue">Niue</option>
+      <option placeholder="Norfolk Island">Norfolk Island</option>
+      <option placeholder="Northern Mariana Islands">Northern Mariana Islands</option>
+      <option placeholder="Norway">Norway</option>
+      <option placeholder="Oman">Oman</option>
+      <option placeholder="Pakistan">Pakistan</option>
+      <option placeholder="Palau">Palau</option>
+      <option placeholder="Panama">Panama</option>
+      <option placeholder="Papua New Guinea">Papua New Guinea</option>
+      <option placeholder="Paraguay">Paraguay</option>
+      <option placeholder="Peru">Peru</option>
+      <option placeholder="Philippines">Philippines</option>
+      <option placeholder="Pitcairn">Pitcairn</option>
+      <option placeholder="Poland">Poland</option>
+      <option placeholder="Portugal">Portugal</option>
+      <option placeholder="Puerto Rico">Puerto Rico</option>
+      <option placeholder="Qatar">Qatar</option>
+      <option placeholder="Reunion">Reunion</option>
+      <option placeholder="Romania">Romania</option>
+      <option placeholder="Russia">Russian Federation</option>
+      <option placeholder="Rwanda">Rwanda</option>
+      <option placeholder="Saint Kitts and Nevis">Saint Kitts and Nevis</option> 
+      <option placeholder="Saint LUCIA">Saint LUCIA</option>
+      <option placeholder="Saint Vincent">Saint Vincent and the Grenadines</option>
+      <option placeholder="Samoa">Samoa</option>
+      <option placeholder="San Marino">San Marino</option>
+      <option placeholder="Sao Tome and Principe">Sao Tome and Principe</option> 
+      <option placeholder="Saudi Arabia">Saudi Arabia</option>
+      <option placeholder="Senegal">Senegal</option>
+      <option placeholder="Seychelles">Seychelles</option>
+      <option placeholder="Sierra">Sierra Leone</option>
+      <option placeholder="Singapore">Singapore</option>
+      <option placeholder="Slovakia">Slovakia (Slovak Republic)</option>
+      <option placeholder="Slovenia">Slovenia</option>
+      <option placeholder="Solomon Islands">Solomon Islands</option>
+      <option placeholder="Somalia">Somalia</option>
+      <option placeholder="South Africa">South Africa</option>
+      <option placeholder="South Georgia">South Georgia and the South Sandwich Islands</option>
+      <option placeholder="Span">Spain</option>
+      <option placeholder="SriLanka">Sri Lanka</option>
+      <option placeholder="St. Helena">St. Helena</option>
+      <option placeholder="St. Pierre and Miguelon">St. Pierre and Miquelon</option>
+      <option placeholder="Sudan">Sudan</option>
+      <option placeholder="Suriname">Suriname</option>
+      <option placeholder="Svalbard">Svalbard and Jan Mayen Islands</option>
+      <option placeholder="Swaziland">Swaziland</option>
+      <option placeholder="Sweden">Sweden</option>
+      <option placeholder="Switzerland">Switzerland</option>
+      <option placeholder="Syria">Syrian Arab Republic</option>
+      <option placeholder="Taiwan">Taiwan, Province of China</option>
+      <option placeholder="Tajikistan">Tajikistan</option>
+      <option placeholder="Tanzania">Tanzania, United Republic of</option>
+      <option placeholder="Thailand">Thailand</option>
+      <option placeholder="Togo">Togo</option>
+      <option placeholder="Tokelau">Tokelau</option>
+      <option placeholder="Tonga">Tonga</option>
+      <option placeholder="Trinidad and Tobago">Trinidad and Tobago</option>
+      <option placeholder="Tunisia">Tunisia</option>
+      <option placeholder="Turkey">Turkey</option>
+      <option placeholder="Turkmenistan">Turkmenistan</option>
+      <option placeholder="Turks and Caicos">Turks and Caicos Islands</option>
+      <option placeholder="Tuvalu">Tuvalu</option>
+      <option placeholder="Uganda">Uganda</option>
+      <option placeholder="Ukraine">Ukraine</option>
+      <option placeholder="United Arab Emirates">United Arab Emirates</option>
+      <option placeholder="United Kingdom">United Kingdom</option>
+      <option placeholder="United States">United States</option>
+      <option placeholder="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+      <option placeholder="Uruguay">Uruguay</option>
+      <option placeholder="Uzbekistan">Uzbekistan</option>
+      <option placeholder="Vanuatu">Vanuatu</option>
+      <option placeholder="Venezuela">Venezuela</option>
+      <option placeholder="Vietnam">Viet Nam</option>
+      <option placeholder="Virgin Islands (British)">Virgin Islands (British)</option>
+      <option placeholder="Virgin Islands (U.S)">Virgin Islands (U.S.)</option>
+      <option placeholder="Wallis and Futana Islands">Wallis and Futuna Islands</option>
+      <option placeholder="Western Sahara">Western Sahara</option>
+      <option placeholder="Yemen">Yemen</option>
+      <option placeholder="Serbia">Serbia</option>
+      <option placeholder="Zambia">Zambia</option>
+      <option placeholder="Zimbabwe">Zimbabwe</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="email">Phone</label>
+      <input type="number" id="email" name="phone" required placeholder="9582XXXXXX">
+  </div>
+  <div class="form-group">
+    <label for="email">Birthday | DOB</label>
+    <input type="date" id="email" name="dob" required>
+</div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required placeholder="you123" value="{{username}}">
+            </div>
+
+
+            <div class="form-group">
+                <label for="password">Create Password</label>
+                <input type="password" id="password" name="pwd1" required placeholder="you@123">
+            </div>
+            <div class="form-group">
+              <label for="password">Confirm Password</label>
+              <input type="password" id="password" name="pwd2" required placeholder="you@123">
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="password" required checked>
+            <label for="">  I accept the <a href="/terms-conditions">Terms and Conditions</a></label>
+        </div>
+        <center>
+          <div class='spinner-displayer'></div>
+          <br>
+        </center>
+            <div class="form-group">
+                <button type="submit">Sign UP</button>
+            </div>
+            <p>Already have an account?? <a href="/signin">SignIN!!</a></p>
+            {% csrf_token %}
+        </form>
+    </div>
+    </center>
+    <br><br>
+
+    <style>
+      * {
+margin: 0;
+padding: 0;
+}
+
+.loader {
+display: none;
+top: 50%;
+left: 50%;
+position: absolute;
+transform: translate(-50%, -50%);
+}
+
+.loading {
+border: 2px solid #ccc;
+width: 60px;
+height: 60px;
+border-radius: 50%;
+border-top-color: #1ecd97;
+border-left-color:  #1ecd97;
+animation: spin 1s infinite ease-in;
+justify-content: center;
+align-items: center;
+}
+
+@keyframes spin {
+0% {
+transform: rotate(0deg);
+}
+100% {
+transform: rotate(360deg);
+}
+}
+    </style>
+    <script>
+      function spinner() {
+const spinnerDisplayer = document.querySelector('.spinner-displayer');
+const btn = document.getElementById('form');
+btn.addEventListener('submit', () => {
+spinnerDisplayer.classList.add('loading');
+})
+}
+
+spinner();
+    </script>
+
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Whatsaf{% endblock %}
+{% block body %}
+
+
+<section class="about-us">
+    <br><br>
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-7">
+                <div class="card p-3 py-4">
+                    <div class="text-center"> <img class="circular-image" style="max-width: 200px;" src="/RequiredImages/{{data.ProfilePhoto}}" width="100"> </div>
+                    <br>
+                        <h5 class="mt-2 mb-0" style="text-align: center;">{{user.first_name}}</h5> <span style="text-align: center;">@{{user.username}}</span>
+                        <hr>
+                        <span style="text-align: center;">Birthday | DOB <strong>{{data.DOB}}</strong></span>
+                        <span style="text-align: center;">Contact Number <strong>{{data.Phone}}</strong></span>
+                        <span style="text-align: center;">Country <strong>{{data.Country}}</strong></span>
+                        <span style="text-align: center;">Premium {% if data.Premium %} <strong><i class="bi bi-check-all"></i></strong> {% else %} <strong><i class="bi bi-ban"></i></strong> {% endif %}</span>
+                </div>
+            </div>
+        </div>
+        </div>
+    <style>
+        .circular-image {
+    width: 150px; /* Adjust width and height as needed */
+    height: 150px;
+    border-radius: 50%; /* Creates a circular shape */
+    object-fit: cover; /* Maintain aspect ratio and cover image */
+    border: 2px solid #fff; /* Optional - Add border to the circle */
+}
+        body {
+    background: #eee
+}
+
+.card {
+    border: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer
+}
+
+.card:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #aff6e0;
+    transform: scaleY(1);
+    transition: all 0.5s;
+    transform-origin: bottom
+}
+
+.card:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #1ecd97;
+    transform: scaleY(0);
+    transition: all 0.5s;
+    transform-origin: bottom
+}
+
+.card:hover::after {
+    transform: scaleY(1)
+}
+
+.fonts {
+    font-size: 11px
+}
+
+.social-list {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    padding: 0
+}
+
+.social-list li {
+    padding: 10px;
+    color: #8E24AA;
+    font-size: 19px
+}
+
+.buttons button:nth-child(1) {
+    border: 1px solid #8E24AA !important;
+    color: #8E24AA;
+    height: 40px
+}
+
+.buttons button:nth-child(1):hover {
+    border: 1px solid #8E24AA !important;
+    color: #fff;
+    height: 40px;
+    background-color: #8E24AA
+}
+
+.buttons button:nth-child(2) {
+    border: 1px solid #8E24AA !important;
+    background-color: #8E24AA;
+    color: #fff;
+    height: 40px
+}
+    </style>
+</section>
+
+
+{% endblock %}
