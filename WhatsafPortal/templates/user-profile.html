@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Whatsaf{% endblock %}
+{% block title %}Profile | Whatsaf{% endblock %}
 {% block body %}
 
 
@@ -12,7 +12,7 @@
                 <div class="card p-3 py-4">
                     <div class="text-center"> <img class="circular-image" style="max-width: 200px;" src="/RequiredImages/{{image}}" width="100"> </div>
                     <br>
-                        <h5 class="mt-2 mb-0" style="text-align: center;">{{request.user.first_name}}</h5> <span style="text-align: center;">@{{request.user.username}}    <a href="/user/{{request.user.username}}"><i class="bi bi-share"></i></a></span>
+                        <h5 class="mt-2 mb-0" style="text-align: center;">{{request.user.first_name}}</h5> <span style="text-align: center;">@{{request.user.username}}    <a href="/u/{{request.user.username}}"><i class="bi bi-share"></i></a></span>
                         <hr>
                         <span style="text-align: center;">Birthday | DOB <strong>{{data.DOB}}</strong></span>
                         <span style="text-align: center;">Contact Number <strong>{{data.Phone}}</strong></span>

@@ -25,5 +25,5 @@ urlpatterns = [
     path("delete-account", DeleteAccount, name = "DeleteAccount"),
     path("change-password", ChangePassword, name = "ChangePassword"),
     path("tc", TermsConditions, name = "TermsConditions"),
-    path("user/<str:slug>", userview, name = "UserView"),
+    path("u/<str:slug>", userview, name = "UserView"),
 ]

@@ -24,9 +24,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-7s$_fz)4lg*f_c(w+ek*mn00)22%9r8mhuihv)93xfhq!jxnvc"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "https://whatsaf.in",
+    "https://www.whatsaf.in",
+    "https://blogs.whatsaf.in",
+    "https://dashboard.whatsaf.in",
+    "localhost"
+      ]
 
 
 # Application definition
@@ -123,6 +129,13 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR / 'static')
 MEDIA_URL = '/RequiredImages/'
 MEDIA_ROOT = os.path.join(BASE_DIR / 'RequiredImages')
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://whatsaf.in",
+    "https://www.whatsaf.in",
+    "https://blogs.whatsaf.in",
+    "https://dashboard.whatsaf.in"
+      ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

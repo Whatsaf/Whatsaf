@@ -192,6 +192,10 @@ def buy(request, slug):
     return redirect("SignIN")
 
 def dashboard(request):
+    if request.user.is_authenticated:
+        if UserDetail.objects.get(User = request.user).Verification == False:
+            dropUser = User.objects.get(username = request.user)
+            dropUser.delete()
     return render(request, "dashboard.html", {"features" : Feature.objects.all()})
 
 def signout(request):
