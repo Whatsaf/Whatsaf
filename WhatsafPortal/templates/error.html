@@ -1,449 +1,166 @@
 <title>Error Occured | Whatsaf</title>
 {% load static %}
-<link rel="shortcut icon" href="{% static 'img/Whatsaf icon.png' %}" type="image/x-icon">
-<div class="container">
-	<div class="container--svg">
-		<svg id="ghostsSVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 375">
-			<defs>
-				<filter id="a" color-interpolation-filters="sRGB" x="-50%" y="-50%" height="200%" width="200%">
-					<feOffset in="SourceAlpha" result="SA-offset"/>
-					<feGaussianBlur in="SA-offset" stdDeviation="12" result="SA-o-blur"/>
-					<feComponentTransfer in="SA-o-blur" result="SA-o-b-contIN">
-						<feFuncA type="table" tableValues="0 1 0.65 0.5 0.55 0.6 0.65 0.55 0.4 0.1 0"/>
-					</feComponentTransfer>
-					<feComposite operator="in" in="SA-o-blur" in2="SA-o-b-contIN" result="SA-o-b-cont"/>
-					<feComponentTransfer in="SA-o-b-cont" result="SA-o-b-c-sprd">
-						<feFuncA type="linear"/>
-					</feComponentTransfer>
-					<feColorMatrix in="SA-o-b-c-sprd" values="0 0 0 0 0.412 0 0 0 0 0.992 0 0 0 0 0.847 0 0 0 1 0" result="SA-o-b-c-s-recolor"/>
-					<feTurbulence result="fNoise" type="fractalNoise" numOctaves="6" baseFrequency="1.98"/>
-					<feColorMatrix in="fNoise" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 7 -3" result="clipNoise"/>
-					<feComposite operator="arithmetic" in="SA-o-b-c-s-recolor" in2="clipNoise" k1=".04" k2="1" result="SA-o-b-c-s-r-mix"/>
-					<feMerge>
-						<feMergeNode in="SA-o-b-c-s-r-mix"/>
-						<feMergeNode in="SourceGraphic"/>
-					</feMerge>
-				</filter>
-				<filter id="b" color-interpolation-filters="sRGB" x="-50%" y="-50%" height="200%" width="200%">
-					<feOffset in="SourceAlpha" result="SA-offset"/>
-					<feGaussianBlur in="SA-offset" stdDeviation="7" result="SA-o-blur"/>
-					<feComponentTransfer in="SA-o-blur" result="SA-o-b-contIN">
-						<feFuncA type="table" tableValues="0 1 0.65 0.5 0.55 0.6 0.65 0.55 0.4 0.1 0"/>
-					</feComponentTransfer>
-					<feComposite operator="in" in="SA-o-blur" in2="SA-o-b-contIN" result="SA-o-b-cont"/>
-					<feComponentTransfer in="SA-o-b-cont" result="SA-o-b-c-sprd">
-						<feFuncA type="linear" slope="3.8"/>
-					</feComponentTransfer>
-					<feColorMatrix in="SA-o-b-c-sprd" values="0 0 0 0 0.412 0 0 0 0 0.992 0 0 0 0 0.847 0 0 0 1 0" result="SA-o-b-c-s-recolor"/>
-					<feTurbulence result="fNoise" type="fractalNoise" numOctaves="6" baseFrequency="1.98"/>
-					<feColorMatrix in="fNoise" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 7 -3" result="clipNoise"/>
-					<feComposite operator="arithmetic" in="SA-o-b-c-s-recolor" in2="clipNoise" k1=".04" k2=".96" result="SA-o-b-c-s-r-mix"/>
-					<feMerge>
-						<feMergeNode in="SA-o-b-c-s-r-mix"/>
-						<feMergeNode in="SourceGraphic"/>
-					</feMerge>
-				</filter>
-				<filter id="c" color-interpolation-filters="sRGB" x="-50%" y="-50%" height="200%" width="200%">
-					<feOffset in="SourceAlpha" result="SA-offset"/>
-					<feGaussianBlur in="SA-offset" stdDeviation="4" result="SA-o-blur"/>
-					<feComponentTransfer in="SA-o-blur" result="SA-o-b-contIN">
-						<feFuncA type="table" tableValues="0 1 0.65 0.5 0.55 0.6 0.65 0.55 0.4 0.1 0"/>
-					</feComponentTransfer>
-					<feComposite operator="in" in="SA-o-blur" in2="SA-o-b-contIN" result="SA-o-b-cont"/>
-					<feComponentTransfer in="SA-o-b-cont" result="SA-o-b-c-sprd">
-						<feFuncA type="linear" slope="2"/>
-					</feComponentTransfer>
-					<feColorMatrix in="SA-o-b-c-sprd" values="0 0 0 0 0.412 0 0 0 0 0.992 0 0 0 0 0.847 0 0 0 1 0" result="SA-o-b-c-s-recolor"/>
-					<feTurbulence result="fNoise" type="fractalNoise" numOctaves="6" baseFrequency="1"/>
-					<feColorMatrix in="fNoise" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 7 -3" result="clipNoise"/>
-					<feComposite operator="arithmetic" in="SA-o-b-c-s-recolor" in2="clipNoise" k1=".08" k2=".75" result="SA-o-b-c-s-r-mix"/>
-					<feMerge>
-						<feMergeNode in="SA-o-b-c-s-r-mix"/>
-						<feMergeNode in="SourceGraphic"/>
-					</feMerge>
-				</filter>
-			</defs>
-		<g id="ghost-all">
-			<g fill="var(--ghost)" filter="url(#a)">
-				<path class="ghost body-outline" d="M141.7 310.8c-8 0-17.7-6.6-6.5-20.2s13.8-17.2 13.8-17.2c13.5-15.5 13.9-49.2 12.9-59.8-1-10.6-8.8-67 9.5-92.2 15.5-25.6 36.1-32 61.7-31.9 31.5 1.2 48 22.6 52.6 34.6 0 0 21.6 38.4 4.3 107-16.2 64.1-36.4 70.6-51.9 58.8 0 0-6.6-5.1-16.8 6.9-7.5 8.7-20.7 15.5-25.5 7.4 0 0-7.7-13.6-26.4-3.4.1-.1-20.4 10-27.7 10z"/>
-				<path class="ghost arms" d="M171.2 189.7c-.2 6.7-42 4.5-47.7-18.5-1.2-4-4.9-6.8-9.3-6.8-5.4 0-9.7 4.4-9.7 9.7 0 1.1.2 2.2.5 3.2 9.4 31.9 47.9 36.2 72.1 64.7M293.1 199.1c1.8 10.9 14.2 35.1 41.3 32.6 4.1-.2 8.1 2.4 9.5 6.5 1.8 5.1-.9 10.7-5.8 12.5-1.1.3-2.1.5-3.2.5-15.7.7-36-5.3-47.7-19.5"/>
-				<path class="ghost-left thumb-right" d="M332 233.5s2.8-6-.4-6.8c-3.2-.8-8.8 1.8-8.1 8.7.7 6.9 8.5-1.9 8.5-1.9"/>
-			</g>
-			<path class="ghost body-main-color" fill="#aefee9" d="M154.4 297.4c-4.7 1-15.5-4.2-1.3-14.2s23.3-26.2 19.5-77.1c-.8-9-7.5-56.9 8.1-78.4 13.2-21.8 30.7-27.2 52.4-27.1 26.8 1 40.8 19.2 44.7 29.4 0 0 18.4 32.6 3.7 90.9-13.8 54.5-30.9 60-44.1 50 0 0-5.6-4.3-14.3 5.9-6.4 7.4-14 13.2-21.7 6.3 0 0-10.2-8.9-24.3 1.6-4.6 3.7-15.1 11.1-22.7 12.7z" filter="url(#a)"/>
-			<path class="ghost-bright-highlight" fill="rgba(255,255,255,.6)" d="M200.5 283.2c7.7 7 15.5-.9 21.9-8.4 8.8-10.3 14.4-6 14.4-6 13.3 10.2 30.6 4.6 44.6-50.7 14.9-59.2-3.7-87-3.7-87-4.7-7.8-12.4-22.7-36.5-29.7l-.3-.5c23.4 3.2 33.1 17.5 39.4 29.3 0 0 18.5 33.1 3.7 92.3-13.9 55.3-31.2 60.9-44.6 50.7 0 0-5.7-4.4-14.4 6-6.4 7.5-14.2 13.4-21.9 6.4l-2.6-2.4z" filter="url(#b)"/>
-		<g id="sign">
-			<path class="sign" d="M165.8 136.9l-11-66.3c-.5-3.2-3.8-6.6-6.6-6.1L30 84.3c-4 .8-5.5 5-5 8.2l11.1 66.2c.5 3.2 3.2 5.5 6 5l59.6-10 7.6 50.2 7.4-1.1-7.7-50.4 52.6-8.8c2.9-.5 4.7-3.5 4.2-6.7z" fill="#adadad"/>
-			<path class="sign" fill="#fff" d="M167.7 134.8l-11-66.3c-.5-3.2-3.2-5.5-6-5L31 83.7c-2.8.5-4.6 3.5-4.1 6.7L38 156.6c.5 3.2 3.2 5.5 6 5l59.6-10 7.6 50.2 7.4-1.1-7.7-50.4 52.6-8.8c2.9-.5 4.7-3.5 4.2-6.7z"/>
-			<path class="sign" d="M111.2 201.8l7.4-1.1-1.9 2.1-7.4 1.1 1.9-2.1z" fill="#bfbfbf"/>
-			<path class="sign" d="M152.3 117.2l-5.4.9 1.6 9.3-9.3 1.6-1.6-9.3-19.2 3.2-1.1-6.6 14.9-32.4 8.8-1.5 4.7 28.3 5.4-.9 1.2 7.4zm-16-4.9l-1.3-7.6c-.2-1.3-.5-3.1-.8-5.6-.3-2.4-.5-3.9-.5-4.3h-.2c-.5 1.8-1.1 3.6-1.9 5.4l-6.2 13.9 10.9-1.8zM112.8 110.3c1.3 7.9 1 13.9-.9 18.1-1.9 4.2-5.6 6.8-10.9 7.7-5.2.9-9.4-.4-12.7-3.9-3.3-3.5-5.6-9-6.9-16.6-1.3-7.9-1-14 .9-18.2s5.6-6.7 10.9-7.6c5.2-.9 9.4.4 12.8 3.9 3.3 3.5 5.6 9 6.8 16.6zm-22 3.7c.9 5.5 2.1 9.4 3.4 11.6 1.4 2.2 3.2 3.2 5.4 2.8 2.2-.4 3.6-1.9 4.2-4.4.6-2.6.4-6.6-.5-12.1s-2.1-9.4-3.5-11.6c-1.4-2.2-3.2-3.2-5.4-2.8-2.2.4-3.6 1.8-4.2 4.4-.5 2.5-.3 6.6.6 12.1zM80.3 129.3l-5.4.9 1.6 9.3-9.3 1.6-1.6-9.3-19.2 3.2-1.1-6.6L60.1 96l8.8-1.5 4.7 28.3 5.4-.9 1.3 7.4zm-15.9-4.9l-1.3-7.6c-.2-1.3-.5-3.1-.8-5.6-.3-2.4-.5-3.9-.5-4.3h-.2c-.5 1.8-1.1 3.6-1.9 5.4l-6.2 13.9 10.9-1.8z"/>
-			</g><!-- /#sign -->
-			<path class="ghost sign--thumb" fill="var(--ghost)" d="M114.7 170.9s-5.8-3.2-6.8 0 1.3 8.9 8.3 8.6c6.8-.4-1.5-8.6-1.5-8.6"/>
-			<path class="ghost arm-highlights" fill="var(--ghost-light)" d="M160.7 202.3c1.3 0-.1-6.5-.1-6.5-30.4 1.1-39.9-23.3-39.9-23.3s-1.2-2-4.6-2.1c0 0 .3 2.3-1.7 2.1-1.7-.2-3.9-1.2-4.5-.1-.7 1.1.5 5.2 5 5.3 0 0 2.1 0 3.2-.6 0 0 12.7 23.5 41.6 25.3h1zM293.9 210.1l-.9 7.7s9.5 22.2 44.1 22.7h4.7c0-1.1-.9-3.9-3.4-5.7-2.4-1.8-8.2-1.5-8.2-1.5 2.4-4 .5-5.5-1.9-4.8-2.9.9-3.2 4.8-3.1 4.8-21.7-2-31-22.5-31-22.5"/>
-			<g class="blush" fill="var(--blush)">
-				<ellipse class="ghost blush-left" cx="188.9" cy="169.5" rx="10.4" ry="4.7"/>
-				<ellipse class="ghost blush-right" cx="266.9" cy="169.5" rx="10.4" ry="4.7"/>
-			</g>
-		 <g class="ghost mouths" fill="none" stroke-width="5" stroke="black" stroke-linecap="round" stroke-miterlimit="10"> 
-				<path class="ghost mouth--sad" stroke-width="6" stroke="black" fill="none" d="M215.5 177.5c2.3-1.1 7.6-3.1 14.3-2.2 4.1.5 7.3 2 9.2 3.1"/>
-				<path class="ghost mouth--straight" stroke-width="5" stroke="black" fill="none" d="M220.4 174.6s7-.8 17.6-.4"/>
-			</g>
-			<g id="ghost--eyes">
-				<circle cx="262.4" class="ghost--eye-right" cy="151.2" r="7.5"/>
-				<circle cx="192.4" class="ghost--eye-left" cy="151.2" r="7.5"/>
-			</g><!-- /#ghost-complete -->
-			<ellipse class="ghost-shadow" fill="rgba(105,253,216,.5)" cx="182.7" cy="360" rx="120" ry="15" filter="url(#a)"/>
-			<!-- Start Friendly Ghost -->
-			<g id="ghost-friendly-all">
-				<ellipse class="ghost-friendly-shadow" fill="rgba(105,253,216,.5)" cx="441.4" cy="203.4" rx="45.1" ry="4.6" filter="url(#c)"/>
-				<g class="ghost-friendly" fill="var(--ghost)" filter="url(#c)">
-					<path  class="ghost-friendly arm-left" d="M401.6 132c-1 11.3-6.3 17.7-12.3 23.1-.4.4-.8.7-1.3 1-2.4 1.1-5.4.1-6.6-2.4-1-2-.5-4.4 1.1-5.8 5.3-6.2 8.6-12.5 9.4-23.4" />
-					<path class="ghost-friendly body--outer" d="M387.1 150s5.4-2.6 2.1-3.9c-3.3-1.3-5.1-.1-5.1 1.6 0 1.7 3 2.3 3 2.3M456.7 178.1c-9.6-5.2-13.5 1.7-13.5 1.7-2.5 4.1-9.2.7-13.1-3.8-5.2-6.1-8.6-3.5-8.6-3.5-7.9 6-18.3 2.7-26.6-30.1-8.9-35.1 2.2-54.8 2.2-54.8 3.7-7.8 12.3-13.7 24.2-15.4 11.2-1.6 23.6-.7 34.4 14 9.4 12.9 5.4 41.8 4.9 47.2-.5 5.4-.3 22.7 6.6 30.6 0 0 1.3 1.8 7.1 8.8 5.7 7 .8 10.3-3.3 10.3-3.9.2-14.4-5-14.3-5z"/>
-					<path class="ghost-friendly arm--right-lower" d="M434.9 135.7c18.9 3.1 30.9 18.9 47.4 14.6.5-.1 1.1-.3 1.5-.6 2.3-1.4 3.1-4.4 1.7-6.8-1.2-1.9-3.4-2.8-5.4-2.3-11.6 3.6-23.6-14.2-20.7-16.1"/>
-					<path class="ghost-friendly arm--right-upper" d="M482.6 144.4s-3.5-1.5-4.2 1.6c.3 2.4 5.4 3 6 1.4.6-2.1-1.8-3-1.8-3M446.9 154.8c8.4-17.8 32.2-24.6 34.8-41.4.1-.5.1-1.1 0-1.7-.4-2.7-2.8-4.6-5.6-4.3-2.2.3-3.9 2-4.3 4.1-1.4 12.1-22.5 15.9-23 12.5"/>
-					<path class="ghost-friendly arm--right-upperthumb" d="M473.9 112.2s-.6-3.7-3.6-2.6c-1.8 1.6.5 6.2 2.1 5.7 2.1-.6 1.5-3.1 1.5-3.1"/>
-				</g>
-				<path class="ghost-friendly body--hightlight" fill="var(--ghost-light)" d="M453.4 170.9c-7.3-5.5-12.6-.9-12.6-.9-4 3.6-8 .6-11.3-3.3-4.5-5.3-7.4-3.1-7.4-3.1-6.9 5.2-15.8 2.3-23-26-7.7-30.4 1.9-47.4 1.9-47.4 2-5.3 9.3-14.8 23.3-15.3 11.3 0 20.4 2.8 27.3 14.1 8.1 11.2 4.6 36.1 4.2 40.8-2 26.5 2.7 34.9 10.1 40.1 7.4 5.2 1.8 7.9-.7 7.4-3.9-.7-9.4-4.5-11.8-6.4z"/>
-				<path class="ghost-friendly body--hightlight-bright" fill="var(--ghost-highlight)" d="M447.3 165.3c-6-4.9-10.3-.8-10.3-.8-3.2 3.2-6.5.5-9.2-2.9-3.7-4.7-6-2.7-6-2.7-5.6 4.6-12.9 2.1-18.7-23.2-6.2-27 1.5-42.2 1.5-42.2 1.6-4.7 7.6-13.2 18.9-13.6 9.2 0 16.6 2.5 22.2 12.6 6.6 9.9 3.8 32.1 3.4 36.3-1.6 23.6 2.2 31.1 8.2 35.7 6 4.6 1.4 7-.5 6.6-3.1-.7-7.5-4.1-9.5-5.8z"/>
-
-				<path class="ghost-friendly mouth--smile-small" fill="black" d="M433.1,117.5c1.1-0.6,1-1,0.8-1.3c-0.2-0.5-0.8-0.2-0.8-0.2c-4.3,2-8.6,1.8-12.6,0 c0,0-0.5-0.2-0.8,0.3c-0.2,0.4-0.2,0.8,0.8,1.2C424.5,119.3,428.8,119.5,433.1,117.5z"/>
-				<path class="ghost-friendly mouth--curious" fill="black" d="M432.8,116.9c0-1.6-2.8-2.9-6.2-2.9s-6.2,1.3-6.2,2.9s2.8,2.9,6.2,2.9S432.8,118.5,432.8,116.9"/>
-				<path class="ghost-friendly mouth--surprised" fill="black" d="M431.8,119.9c0-4.4-2.2-8-5-8s-5,3.6-5,8s2.2,8,5,8S431.8,124.3,431.8,119.9"/>
-				<path class="ghost-friendly mouth--smile" fill="black" stroke="none" d="M427,122.9c4.1,0,7.4-3.2,7.6-7.3c0.3-1.8-1.2-1.3-1.2-1.3c-1.6,0.5-3.9,0.7-6.4,0.7h-0.4 c-2.5,0-4.7-0.1-6.4-0.7c0,0-1.5-0.5-1.2,1.3c0.2,4,3.6,7.2,7.6,7.3H427z"/>
-				<path class="ghost-friendly mouth--smile-tongue" fill="var(--blush)" stroke="none" d="M426.9,122.3c1.9,0,3.5-0.6,4.4-1.6c-0.9-1-2.6-1.7-4.6-1.7c-1.9,0-3.5,0.6-4.4,1.6 C423.2,121.6,425,122.3,426.9,122.3"/>
-				<g>
-					<path class="ghost-friendly eyes--happy eyes" d="M452.2 105.4c0 2.8-2.3 5-5 5s-5-2.3-5-5c0-2.8 2.3-5 5-5s5 2.2 5 5M411.4 105.4c0 2.8-2.3 5-5 5-2.8 0-5-2.3-5-5 0-2.8 2.3-5 5-5 2.8-.1 5 2.2 5 5"/>
-				</g>
-			</g>
-		</svg>
-</div><!-- /.svg-container --> 
-		<div class="containter--text">
-      <div class="text">
-        <h1>404</h1>
-        <h2>Don't be spooked.</h2>
-        <p>Oops! Something went wrong. We're experiencing technical difficulties. Please try again later.</p>
-        <a href="/"><button class="btn green">HOME</button></a>
-      </div>
-	</div>
-</div>
-
-
-
+<body>
+    <div>
+        <svg width="1123" height="837" viewBox="0 0 1123 837" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="1123" height="837" fill="black"/>
+            <g id="sky" filter="url(#filter0_d)">
+            <rect id="background" x="30" y="26" width="1063" height="777" rx="20" fill="black"/>
+            <g id="stars">
+            <path id="Vector" d="M202.12 319.2C204.937 319.2 207.22 316.917 207.22 314.1C207.22 311.283 204.937 309 202.12 309C199.303 309 197.02 311.283 197.02 314.1C197.02 316.917 199.303 319.2 202.12 319.2Z" fill="white"/>
+            <path id="Vector_2" d="M566.12 615.2C568.937 615.2 571.22 612.917 571.22 610.1C571.22 607.283 568.937 605 566.12 605C563.303 605 561.02 607.283 561.02 610.1C561.02 612.917 563.303 615.2 566.12 615.2Z" fill="white"/>
+            <path id="Vector_3" d="M351.12 638.95C352.694 638.95 353.97 637.674 353.97 636.1C353.97 634.526 352.694 633.25 351.12 633.25C349.546 633.25 348.27 634.526 348.27 636.1C348.27 637.674 349.546 638.95 351.12 638.95Z" fill="white"/>
+            <path id="Vector_4" d="M985.11 503.99C986.684 503.99 987.96 502.714 987.96 501.14C987.96 499.566 986.684 498.29 985.11 498.29C983.536 498.29 982.26 499.566 982.26 501.14C982.26 502.714 983.536 503.99 985.11 503.99Z" fill="white"/>
+            <path id="Vector_5" d="M822.11 247.99C823.684 247.99 824.96 246.714 824.96 245.14C824.96 243.566 823.684 242.29 822.11 242.29C820.536 242.29 819.26 243.566 819.26 245.14C819.26 246.714 820.536 247.99 822.11 247.99Z" fill="white"/>
+            <path id="Vector_6" d="M1053.11 372.99C1054.68 372.99 1055.96 371.714 1055.96 370.14C1055.96 368.566 1054.68 367.29 1053.11 367.29C1051.54 367.29 1050.26 368.566 1050.26 370.14C1050.26 371.714 1051.54 372.99 1053.11 372.99Z" fill="white"/>
+            <path id="Vector_7" d="M292.12 152.2C294.937 152.2 297.22 149.917 297.22 147.1C297.22 144.283 294.937 142 292.12 142C289.303 142 287.02 144.283 287.02 147.1C287.02 149.917 289.303 152.2 292.12 152.2Z" fill="white"/>
+            <path id="Vector_8" d="M151.95 492.17H147.41V487.63H145.56V492.17H141.02V494.02H145.56V498.55H147.41V494.02H151.95V492.17Z" fill="white"/>
+            <path id="Vector_9" d="M265.95 490.17H261.41V485.63H259.56V490.17H255.02V492.02H259.56V496.55H261.41V492.02H265.95V490.17Z" fill="white"/>
+            <path id="Vector_10" d="M428.95 582.17H424.41V577.63H422.56V582.17H418.02V584.02H422.56V588.55H424.41V584.02H428.95V582.17Z" fill="white"/>
+            <path id="Vector_11" d="M776.98 344.67H774.91V342.6H774.07V344.67H772V345.51H774.07V347.58H774.91V345.51H776.98V344.67Z" fill="white"/>
+            <path id="Vector_12" d="M68.98 422.67H66.91V420.6H66.07V422.67H64V423.51H66.07V425.58H66.91V423.51H68.98V422.67Z" fill="white"/>
+            <path id="Vector_13" d="M153.98 592.67H151.91V590.6H151.07V592.67H149V593.51H151.07V595.58H151.91V593.51H153.98V592.67Z" fill="white"/>
+            <path id="Vector_14" d="M297.97 357.71H295.9V355.64H295.06V357.71H292.99V358.55H295.06V360.62H295.9V358.55H297.97V357.71Z" fill="white"/>
+            <path id="Vector_15" d="M321.98 268.67H319.91V266.6H319.07V268.67H317V269.51H319.07V271.58H319.91V269.51H321.98V268.67Z" fill="white"/>
+            <path id="Vector_16" d="M956.9 333.07C957.916 333.07 958.74 332.246 958.74 331.23C958.74 330.214 957.916 329.39 956.9 329.39C955.884 329.39 955.06 330.214 955.06 331.23C955.06 332.246 955.884 333.07 956.9 333.07Z" fill="white"/>
+            </g>
+            <g id="rocket">
+            <path id="Vector_17" d="M635.46 400H466V406.78H635.46V400Z" fill="#535461"/>
+            <g id="body-rocket">
+            <path id="Vector_18" d="M482.581 674.368H458.851L463.091 645.558H478.341L482.581 674.368Z" fill="#535461"/>
+            <path id="Vector_19" d="M685.931 674.368H662.211L666.441 645.558H681.701L685.931 674.368Z" fill="#535461"/>
+            <g id="Group" opacity="0.1">
+            <path id="Vector_20" opacity="0.1" d="M665.261 656.998H682.881L681.701 648.948H666.441L665.261 656.998Z" fill="black"/>
+            </g>
+            <path id="Vector_21" d="M559.681 674.368H535.961L540.191 645.558H555.451L559.681 674.368Z" fill="#535461"/>
+            <path id="Vector_22" d="M607.981 674.368H584.261L588.491 645.558H603.741L607.981 674.368Z" fill="#535461"/>
+            <g id="Group_2" opacity="0.1">
+            <path id="Vector_23" opacity="0.1" d="M587.311 656.998H604.931L603.741 648.948H588.491L587.311 656.998Z" fill="black"/>
+            </g>
+            <path id="Vector_24" d="M677.861 300.724L677.86 300.724L677.869 300.733C681.479 304.531 686.193 310.849 691.386 320.975C702.335 342.647 707.995 366.605 707.901 390.887V390.888V652.328H633.901L633.901 391.988L633.901 391.986C633.785 367.014 639.733 342.386 651.234 320.22C655.114 312.85 659.549 305.944 664.436 300.73L664.436 300.73L664.442 300.724C665.29 299.787 666.326 299.038 667.481 298.525C668.637 298.012 669.887 297.747 671.151 297.747C672.415 297.747 673.666 298.012 674.821 298.525C675.977 299.038 677.012 299.787 677.861 300.724Z" fill="#E0E0E0" stroke="black"/>
+            <path id="Vector_25" d="M463.524 300.733L463.524 300.733L463.532 300.724C464.38 299.787 465.416 299.038 466.571 298.525C467.727 298.012 468.977 297.747 470.241 297.747C471.505 297.747 472.755 298.012 473.911 298.525C475.067 299.038 476.102 299.787 476.95 300.724L476.95 300.724L476.957 300.731C481.853 305.944 486.278 312.85 490.168 320.22C501.665 342.388 507.612 367.014 507.501 391.986V391.988V652.328H433.501L433.501 390.888L433.501 390.887C433.408 366.605 439.067 342.647 450.017 320.975C455.2 310.849 459.913 304.531 463.524 300.733Z" fill="#E0E0E0" stroke="black"/>
+            <path id="Vector_26" d="M490.201 396.448L508.001 396.538V418.478H490.201V396.448Z" fill="#535461"/>
+            <path id="Vector_27" d="M633.401 396.448L651.191 396.538V418.478H633.401V396.448Z" fill="#535461"/>
+            <g id="Group_3" opacity="0.1">
+            <path id="Vector_28" opacity="0.1" d="M490.611 319.648C486.711 312.258 482.261 305.308 477.321 300.048C475.926 298.502 474.062 297.456 472.016 297.071C469.969 296.686 467.852 296.984 465.991 297.918C467.063 298.453 468.032 299.175 468.851 300.048C473.781 305.308 478.241 312.258 482.131 319.648C493.671 341.887 499.638 366.595 499.521 391.648V652.468H508.001V391.658C508.115 366.602 502.147 341.892 490.611 319.648V319.648Z" fill="black"/>
+            </g>
+            <g id="Group_4" opacity="0.1">
+            <path id="Vector_29" opacity="0.1" d="M657.571 320.368C661.461 312.978 665.921 306.028 670.851 300.768C671.773 299.772 672.889 298.976 674.131 298.428C672.298 297.626 670.26 297.421 668.304 297.841C666.348 298.261 664.573 299.285 663.231 300.768C658.291 306.028 653.831 312.978 649.941 320.368C638.407 342.609 632.44 367.315 632.551 392.368V653.228H640.181V392.388C640.061 367.328 646.029 342.613 657.571 320.368V320.368Z" fill="black"/>
+            </g>
+            <path id="Vector_30" d="M471.041 738.768H470.391C467.331 738.768 464.395 737.553 462.231 735.388C460.067 733.224 458.851 730.289 458.851 727.228V674.368H482.581V727.228C482.581 730.289 481.365 733.224 479.201 735.388C477.037 737.553 474.102 738.768 471.041 738.768Z" fill="url(#paint0_linear)"/>
+            <path id="Vector_31" d="M548.371 738.518H547.721C544.661 738.518 541.725 737.303 539.561 735.138C537.397 732.974 536.181 730.039 536.181 726.978V674.118H559.911V726.978C559.911 730.039 558.695 732.974 556.531 735.138C554.367 737.303 551.432 738.518 548.371 738.518Z" fill="url(#paint1_linear)"/>
+            <path id="Vector_32" d="M597.371 738.518H596.721C593.661 738.518 590.725 737.303 588.561 735.138C586.397 732.974 585.181 730.039 585.181 726.978V674.118H608.911V726.978C608.911 730.039 607.695 732.974 605.531 735.138C603.367 737.303 600.432 738.518 597.371 738.518Z" fill="url(#paint2_linear)"/>
+            <path id="Vector_33" d="M674.371 738.518H673.721C670.661 738.518 667.725 737.303 665.561 735.138C663.397 732.974 662.181 730.039 662.181 726.978V674.118H685.911V726.978C685.911 730.039 684.695 732.974 682.531 735.138C680.367 737.303 677.432 738.518 674.371 738.518Z" fill="url(#paint3_linear)"/>
+            <path id="Vector_34" d="M578.51 96.4834L578.52 96.4957L578.531 96.5076C583.685 102.221 590.434 111.588 597.797 126.726L597.798 126.73C613.465 158.638 621.544 194.732 621.655 231.32L622.93 650.608L517.93 650.927L516.661 233.319C516.547 195.664 524.762 158.515 541.048 125.774C546.594 114.716 552.917 104.371 559.813 96.561L559.822 96.5507L559.831 96.5402C560.972 95.1742 562.398 94.0744 564.009 93.3179C565.62 92.5615 567.377 92.1667 569.157 92.1613C570.937 92.1559 572.697 92.54 574.312 93.2866C575.928 94.0333 577.361 95.1244 578.51 96.4834Z" fill="#EEEEEE" stroke="black" stroke-width="2"/>
+            <path id="Vector_35" d="M585.811 142.368H551.971C545.896 142.368 540.971 147.293 540.971 153.368V156.958C540.971 163.034 545.896 167.958 551.971 167.958H585.811C591.886 167.958 596.811 163.034 596.811 156.958V153.368C596.811 147.293 591.886 142.368 585.811 142.368Z" fill="#535461"/>
+            <path id="Vector_36" d="M433.431 396.448L451.231 396.538V418.478H433.431V396.448Z" fill="#535461"/>
+            <path id="Vector_37" d="M690.171 396.448L707.961 396.538V418.478H690.171V396.448Z" fill="#535461"/>
+            </g>
+            </g>
+            </g>
+            <defs>
+            <filter id="filter0_d" x="0" y="0" width="1123" height="837" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+            <feOffset dy="4"/>
+            <feGaussianBlur stdDeviation="15"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.7 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+            </filter>
+            <linearGradient id="paint0_linear" x1="470.721" y1="674.368" x2="470.721" y2="738.768" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#E0E0E0"/>
+            <stop offset="0.31" stop-color="#FCCC63"/>
+            <stop offset="0.77" stop-color="#F55F44"/>
+            </linearGradient>
+            <linearGradient id="paint1_linear" x1="548.051" y1="674.118" x2="548.051" y2="738.518" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#E0E0E0"/>
+            <stop offset="0.31" stop-color="#FCCC63"/>
+            <stop offset="0.77" stop-color="#F55F44"/>
+            </linearGradient>
+            <linearGradient id="paint2_linear" x1="597.051" y1="674.118" x2="597.051" y2="738.518" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#E0E0E0"/>
+            <stop offset="0.31" stop-color="#FCCC63"/>
+            <stop offset="0.77" stop-color="#F55F44"/>
+            </linearGradient>
+            <linearGradient id="paint3_linear" x1="674.051" y1="674.118" x2="674.051" y2="738.518" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#E0E0E0"/>
+            <stop offset="0.31" stop-color="#FCCC63"/>
+            <stop offset="0.77" stop-color="#F55F44"/>
+            </linearGradient>
+            </defs>
+            </svg>
+    </div>
+    <div class="text">
+        <h1>400 Error</h1>  
+      <h2>Couldn't launch :(</h2>
+         <h3>Page Not Found - lets take you <a href="/">HOME</a></h3> 
+    </div>
+</body>
 <style>
-    :root {
-  --white: #FFF;
-  --black: #000;
-  --ghost: rgba(105, 253, 216, 1);
-  --ghost-light: rgba(174, 254, 233, 1);
-  --ghost-highlight: rgba(206, 254, 233, 1);
-  --green-dark: #69FDD8;
-  --text: #CBFFE8;
-  --blush: #EF7384;
+	@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Fira+Mono:wght@500&display=swap');
+body{
+    height: 95vh;
+    background: #000000;
+    text-align: center;
+    color: #E0E0E0;
+    font-family: 'Faira Mono', monospace;
 }
-html,
-body {
-  height: 100%;
+h1{
+    font-size: 2.5rem;
+    font-family: 'Permanent Marker', cursive;
 }
-body {
-  background: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Open Sans';
-  color: #CBFFE8;
-  font-size: 1.1em;
-	margin: 0 auto;
-	padding: 0;
-
+div{
+    transform-style: preserve-3d;
 }
-button {
-  font-family: 'Open Sans', 
+svg{
+    width: clamp(300px , 70% , 600px);
+    height: 500px;
+  
 }
-svg {
-  width: 100%;
-}
-h1 {
-  font-size: 8em;
-  font-weight:700;
-  margin: 15px 0px;
-  line-height: 1.125em;
-  letter-spacing: .05em;
-  text-shadow:(0px 0px 18px rgba(203,255,232,.6));
-	// @media screen and (min-width:768px) { 
-	// 	font-size: 8em;
-	// }
-}
-h2 {
-  font-size: 2em;
-  font-weight:400;
-  line-height: 1.25em;
-}
-p {
-  font-size: 1.1em;
-  line-height: 1.5em;
-  max-width: 30em;
-  padding-bottom: .8em;
-}
-.container {
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-gap: 1em; 
-  justify-content: space-between; 
-  align-items: center; 
-	height: 100vh;
-	width: 100vw;
-	@media screen and (min-width:768px) { 
-		grid-template-columns: repeat(2, 1fr);
-	}
-}
-
-.text {
-	padding: 2rem ;
-}
-
-.btn {
-  color: var(--white);
-  background:  var(--blush);
-  border-color:  var(--blush);
-  border-radius: 20px;
-  padding: 8px 50px;
-  cursor: pointer;
-  font-size: 1em;
-  letter-spacing: .1rem;
-  font-weight: 400;
-  margin: 5px 0px;
+#rocket{
     
-  &:hover {
-    color: black;
-    background: var(--ghost);
-    border-color:  var(--ghost);
-    filter: drop-shadow(0px 0px 10px rgba(105, 253, 216, .5));
-    transition: .5s;
-  }
+    transform: translateY(750px);
+   
+    animation: launch 2s ease-out forwards;
 }
 
-.hide {
-   opacity: 0 
+@keyframes launch {
+    from {
+        transform: translateY(750px);
+    }
+    to{
+        perspective: 500px;
+        transform: translateY(0px); 
+    }
 }
+#stars {
+    animation: twinkling 2s linear ;
+}
+@keyframes twinkling {
 
-.body--outer {
-	opacity: 1
+    from{
+        transform: scale(0);
+    }
+    to{
+        transform: scale(1);
+    }
 }
-
-.body--hightlight {
-	opacity: .9
+.text{
+    opacity: 0;
+    animation:appear 1s ease-in forwards;
+    animation-delay: 1.8s;
 }
-.body--hightlight-bright {
-	opacity: .5
+@keyframes appear {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
 }
-
-.arm--right-upper,
-.arm--right-upperthumb {
-	opacity: 0
-}
-
-.ghost-friendly-shadow,
-.ghost-shadow {
-	opacity: .4
+a{
+    color:#F66947;
+    text-decoration: none;
 }
 </style>
-<script>
-    // Register MorphSVGPlugin
-gsap.registerPlugin(MorphSVGPlugin);
-// Convert all SVG Shapes to Path for MorphSVGPlugin
-MorphSVGPlugin.convertToPath("circle, rect, ellipse, line, polygon, polyline");
-
-const select = function(el) {
-  return document.querySelector(el);
-},
-	ghostShy = select('#ghost-all'),
-	ghostShyEyes = select('#ghost--eyes'),
-  ghostFriendly = select('#ghost-friendly-all'),
-	ghostFriendlyEyes = select('.eyes--happy');
-
-gsap.set('svg', {
-  visibility: 'visible'
-})
-
-gsap.set('.mouth--frown, .mouth--sad', {
-	transformOrigin: "50% 50%",
-	opacity: 0,
-});
-
-// Animations Full Movie
-function ghostEyeBlink() {
-	const tl = gsap.timeline({
-		repeat:-1, 
-		repeatDelay: 4
-  });
-	tl.from('#ghost--eyes',  {
-		transformOrigin:"center", 
-		scaleY:0,
-		duration: 0.2,
-		yoyo:true,
-	});
-	return tl;
-}
-
-function ghostFriendlyEyeBlink() {
-  const tl = gsap.timeline({
-		repeat:-1, 
-		repeatDelay: 5
-  });
-  tl.from(ghostFriendlyEyes,  {
-		transformOrigin:"center", 
-		scaleY:0,
-		duration: 0.2,
-		yoyo:true,
-	});
-	return tl;
-}
-
-// Sign Movement	
-function ghostSign() {
-  const tl = gsap.timeline();
-  tl.from('#sign', {
-		transformOrigin: 'center',
-		y: 0.5,
-		rotation: -1,
-		yoyo: true,
-		repeat: -1,
-		duration: 1.5
-	});
-	return tl;
-}
-
-// Ghosts Hover Movement
-const randomX = gsap.utils.random(-5, 5, true);
-const randomY = gsap.utils.random(-6, 5, true);
-const randomTime = gsap.utils.random(3, 2, true);
-
-gsap.set('#ghost-friendly-all, #ghost-all', {
-  x: randomX,   
-  y: randomY,
-});
-
-function ghostMovement() {
-  const tl = gsap.timeline({
-    repeat: -1,
-    repeatRefresh: true
-  });
-  tl.to('#ghost-friendly-all, #ghost-all', {
-    duration: randomTime,
-    x: randomX,
-    y: randomY,
-  });
-	return tl;
-}
-
-// Shy Ghost
-gsap.set('.ghost-shadow', {
-	transformOrigin: "50% 50%",
-	scale: "60%",
-});
-
-gsap.set('.blush', {
-  opacity: 0,
-	x: 10,
-	y: 10
-})
-
-// Shy Ghost Expressions
-function ghostShyExpressions() {
-  const tl = gsap.timeline();
-				tl.to('#ghost--eyes, .mouth--straight', {x: -7, y:-10, duration: 2})
-					.to('.mouth--straight', {morphSVG: {shape:'.mouth--sad', duration: .5, origin: "center center" }}, '-=.5')
-					.to('#ghost--eyes, .mouth--straight', {x: 0,  y:0, duration: 2},)
-					.to('#ghost--eyes, .mouth--straight', {x: 10, y:-10, duration: 2, delay: 1})
-					.to('#ghost--eyes, .mouth--straight', {y:10, duration: 2.5})
-					.to('.blush', { opacity: .5, duration: 1.5})
-					.to('#ghost--eyes, .mouth--straight, .blush', {x:0, duration: 1.5}, '+=2')
-					.to('.blush', { opacity: 0, duration: 1.5}, '+=2')
-					.to('#ghost--eyes, .mouth--straight', {x: 0,  y:0, duration: 2}, '-=1')
-	return tl;
-}
-
-// Friendly Ghost
-// Set Friendly Ghost Opacity Items
-gsap.set('.mouth--curious, .mouth--surprised, .mouth--smile, .mouth--smile-tongue', {
-	opacity: 0
-});
-
-gsap.set('#ghost-friendly-all', {
-	scale: .5,
-	opacity: 0,
-	transformOrigin: '70% 0%',
-});  
-
-// Ghost Friendly Enter
-function ghostFriendlyEnter() {
-  const tl = gsap.timeline();
-  tl.to('#ghost-friendly-all', {
-		opacity: 1,
-		duration: 4,
-		scale: 1
-	});
-	return tl;
-}
-
-gsap.set('.eyes--happy', {
-	scale: .7,
-	opacity: 1,
-	x: 0,
-	transformOrigin: '50% 50%',
-});
-
-function ghostFriendlyExpressions() {
-  const tl = gsap.timeline();
-				tl.to('.eyes--happy, .mouth--smile-small', {keyframes: [ 
-								{x: -6, duration: 1.5, delay: 3},
-								{x: 6, duration: 1.5},
-								{x: 0, duration: 1},
-							]})
-					.to('.mouth--smile-small', {keyframes: [
-								{morphSVG: {shape:'.mouth--curious', duration: .1, origin: "center center" }
-							},
-								{morphSVG: {shape:'.mouth--surprised', duration: .2, origin: "top right" }
-							},
-							]})
-					.to('.eyes--happy, .mouth--smile-small', { keyframes: [ 
-  							{x: -6, duration: 1.5},
-								{x: 0, duration: 1},
-								{x: -6, duration: 1.5},
-								{x: 0, duration: 1},
-							]}, '-=1')
-	
-					.to('.mouth--smile-small', {duration: .5, keyframes: [
-						{morphSVG: {shape:'.mouth--smile', origin: "center center" }},
-     					]});
-	return tl;
-}
-
-// Ghost Wave
-function ghostFriendlyArm() {
-  const tl = gsap.timeline();
-	 tl.to('.arm--right-lower', { x: 5, y: 10, transformOrigin:"top left", rotation:"-70", duration: .75})
-		 .to('.mouth--smile-tongue', {opacity: 1, duration: .75}, "-=1")
-     .to('.arm--right-lower',  { repeat: 6, keyframes: [
-					{rotation:"-60", duration: .25},
-					{rotation:"-70", duration: .25}, 
-		 		]})
-		 .to('.arm--right-lower', { x: 0, y: 0, transformOrigin:"top left", rotation:"0", duration: .75})
-	return tl;
-}
-
-// Master Timeline
-const master = gsap.timeline();
-	master.addLabel("start");
-	master.add( ghostEyeBlink(), "start");
-	master.add( ghostFriendlyEyeBlink(), "start");
-	master.add( ghostSign(), "start");
-	master.add( ghostMovement(), "start");
-	master.add(ghostShyExpressions(), "start")
-	master.addLabel("friendly", 2);
-	master.add(ghostFriendlyEnter(), "friendly");
-	master.add(ghostFriendlyExpressions(), "-=5");
-	master.add(ghostFriendlyArm(), "+=1" );
-	
-//GSDevTools.create();
-</script>

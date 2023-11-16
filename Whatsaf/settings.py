@@ -27,10 +27,10 @@ SECRET_KEY = "django-insecure-7s$_fz)4lg*f_c(w+ek*mn00)22%9r8mhuihv)93xfhq!jxnvc
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "https://whatsaf.in",
-    "https://www.whatsaf.in",
-    "https://blogs.whatsaf.in",
-    "https://dashboard.whatsaf.in",
+    "whatsaf.in",
+    "www.whatsaf.in",
+    "blogs.whatsaf.in",
+    "dashboard.whatsaf.in",
     "localhost"
       ]
 
