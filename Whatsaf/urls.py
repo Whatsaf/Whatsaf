@@ -23,6 +23,7 @@ from django.conf.urls import handler400, handler403, handler404, handler500
 urlpatterns = [
     path("WhatsafAdminByFounderCEO/", admin.site.urls),
     path("", include("WhatsafPortal.urls")),
+    path(r"blogs/", include("WhatsafBlogs.urls")),
     re_path(r'^RequiredImages/(?P<path>.*)$', serve, {'document_root' : settings.MEDIA_ROOT})
 ]
 

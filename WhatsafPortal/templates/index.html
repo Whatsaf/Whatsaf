@@ -223,6 +223,85 @@
         </div>
 
       </div>
+      <div class="wrapper">
+      </div>
+    <div class="cookie-container">
+      <p style="color: black;">
+        We have some <a style="color: black;" href="/tc"><strong>Terms</strong> and <strong>Conditions</strong></a> to enhance your experience. By using this website you agree to all our <a style="color: black;" href="/terms-and-conditions"><strong>Terms</strong> and <strong>Conditions</strong></a>.
+      </p>
+  
+      <button class="cookie-btn">
+        Close and Accept
+      </button>
+    </div>
+    
+  </body>
+  </html>
+  <script>
+    const cookieContainer = document.querySelector(".cookie-container");
+  const cookieButton = document.querySelector(".cookie-btn");
+  
+  cookieButton.addEventListener("click", () => {
+  cookieContainer.classList.remove("active");
+  localStorage.setItem("cookieBannerDisplayed", "true");
+  });
+  
+  setTimeout(() => {
+  if (!localStorage.getItem("cookieBannerDisplayed")) {
+    cookieContainer.classList.add("active");
+  }
+  }, 6000);
+  </script>
+  <style>
+    * {
+  margin: 0;
+  }
+  
+  body {
+  font-family: "Roboto", sans-serif;
+  }
+  
+  p {
+  margin: 24px 0;
+  line-height: 2;
+  }
+  
+  .wrapper {
+  padding: 32px;
+  }
+  
+  .cookie-container {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  color: #f5f6fa;
+  padding: 0 32px;
+  box-shadow: 0 -2px 16px rgba(255, 255, 255, 0.39);
+  
+  transition: 400ms;
+  }
+  
+  .cookie-container.active {
+  bottom: 0;
+  }
+  
+  .cookie-container a {
+  color: #f5f6fa;
+  }
+  
+  .cookie-btn {
+  background: #000000;
+  border: 0;
+  color: #f5f6fa;
+  padding: 12px 48px;
+  font-size: 18px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  }
+  </style>
     </section><!-- End Frequently Asked Questions Section -->
 
     <!-- ======= Recent Blog Posts Section ======= -->
@@ -236,30 +315,20 @@
 
         <div class="row gy-4">
 
-          <div class="col-xl-4 col-md-6">
+            {% for b in blog|slice:"::-1" %}
+            <div class="col-xl-4 col-md-6">
             <article>
 
               <div class="post-img">
-                <img src="{% static 'img/blog/blog-3.jpg' %}" alt="" class="img-fluid">
+                <img src="{{b.BlogImage}}" alt="" class="img-fluid">
               </div>
-
-              <p class="post-category">Informative</p>
-
               <h2 class="title">
-                <a href="blog-details.html">How can you post your comments on Whatsapp channel posts.</a>
+                <a href="https://blogs.whatsaf.in//read-blogs/{{b.BlogSlug}}">{{b.BlogName}}</a>
               </h2>
-
-              <div class="d-flex align-items-center">
-                <div class="post-meta">
-                  <p class="post-author">Anirban Bhattacharya</p>
-                  <p class="post-date">
-                    <time datetime="2022-01-01">Nov 8, 2023</time>
-                  </p>
-                </div>
-              </div>
 
             </article>
           </div><!-- End post list item -->
+            {% endfor %}
 
         </div><!-- End recent posts list -->
 

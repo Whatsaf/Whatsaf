@@ -16,6 +16,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import string
 from WhatsafPortal.details import country_codes
+from WhatsafBlogs.models import Blog
 
 mainDomain = "http://localhost:8000"
 # C:\Users\A\AppData\Local\Google\Chrome\User Data
@@ -54,8 +55,7 @@ def index(request):
         if UserDetail.objects.get(User = request.user).Verification == False:
             dropUser = User.objects.get(username = request.user)
             dropUser.delete()
-        return render(request, "index.html", {"faq" : FAQ.objects.all(), "data" : UserDetail.objects.get(User = User.objects.get(username = request.user))})
-    return render(request, "index.html", {"faq" : FAQ.objects.all()})
+    return render(request, "index.html", {"faq" : FAQ.objects.all(), "blog" : Blog.objects.all()})
 
 def error(request, exception):
     return render(request, "error.html")
@@ -330,7 +330,7 @@ def ChangePassword(request):
     return redirect("ErrorPage")
 
 def TermsConditions(request):
-    return render(request, "terms-conditions.html")
+    return render(request, "tc.html")
 
 def userview(request, slug):
     if User.objects.filter(username = slug).exists() == False:

@@ -1,0 +1,94 @@
+{% extends 'WhatsafBlogs/base.html' %}
+{% load static %}
+{% block title %}Blogs | Whatsaf Blogs{% endblock %}
+
+    {% block body %}
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <div class="heading-page header-text">
+      <section class="page-heading">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="text-content">
+                <h4>Our Blogs</h4>
+                <h2>All our blogs</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    
+    <!-- Banner Ends Here -->
+
+
+    <section class="blog-posts grid-system">
+      <div class="container">
+        <form class="d-flex" method="get" action="/blogs/search">
+          <input class="form-control me-2" type="search" name="search" placeholder="Search..." aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <br>
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="all-blog-posts">
+              <div class="row">
+
+                {% for blog in blogs|slice:"::-1" %}
+                <!-- Blog desc starts here -->
+                <div class="col-lg-6">
+                  <div class="blog-post">
+                    <div class="blog-thumb">
+                      <img style="height: 400px;" src="{{blog.BlogImage}}" alt="">
+                    </div>
+                    <div class="down-content">
+                      <span>{{blog.BlogCategory}}</span>
+                      <a href="/blogs/read-blog/{{blog.BlogSlug}}"><h4>{{blog.BlogName}}</h4></a>
+                      <ul class="post-info">
+                        <li><a >{{blog.BlogAuthor}}</a></li>
+                        <li><a >{{blog.BlogDateAdded}}</a></li>
+                        <li><a >{{blog.Likes.count}} Likes</a></li>
+                      </ul>
+                      <p>{{blog.BlogDescription}}</p>
+                      
+                    </div>
+                  </div>
+                </div>
+                <!-- Blog desc ends here -->
+                {% endfor %}
+
+
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="sidebar">
+              <div class="row">
+                <div class="col-lg-12">
+                </div>
+                <div class="col-lg-12">
+                  <div class="sidebar-item recent-posts">
+                    <div class="sidebar-heading">
+                      <h2>Recent Posts</h2>
+                    </div>
+                    <div class="content">
+                      <ul>
+                        {% for recentblog in recblogs %}
+                        <li><a href="/blogs/read-blog/{{recentblog.BlogSlug}}">
+                          <h5>{{recentblog.BlogName}}</h5>
+                          <span>{{recentblog.BlogDateAdded}}</span>
+                        </a></li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endblock %}

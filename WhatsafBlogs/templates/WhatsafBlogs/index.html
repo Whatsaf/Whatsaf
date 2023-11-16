@@ -1,0 +1,133 @@
+{% extends 'WhatsafBlogs/base.html' %}
+{% load static %}
+{% block title %}
+Whatsaf Blogs
+{% endblock %}
+    {% block body %}
+
+
+    <div class="main-banner header-text">
+      <div class="container-fluid">
+        <br><br><br><br><br>
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img style="width: 100%; height: 400px;" src="{{item1.BlogImage}}" class="d-block w-100" alt="...">
+              <div class="carousel-caption">
+                <a href="/blogs/read-blog/{{item1.BlogSlug}}">
+                  <h5 style="color: #48C757;">{{item1.BlogName}}</h5>
+                  <h6 style="color: black;">{{item1.BlogAuthor}}</h6>
+                </a>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img style="width: 100%; height: 400px;" src="{{item2.BlogImage}}" class="d-block w-100" alt="...">
+              <div class="carousel-caption">
+                <a href="/read-blog/{{item2.BlogSlug}}">
+                  <h5 style="color: #48C757;">{{item2.BlogName}}</h5>
+                  <h6 style="color: black;">{{item2.BlogAuthor}}</h6>
+                </a>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img style="width: 100%; height: 400px;" src="{{item3.BlogImage}}" class="d-block w-100" alt="...">
+              <div class="carousel-caption">
+                <a href="/read-blog/{{item3.BlogSlug}}">
+                  <h5 style="color: #48C757;">{{item3.BlogName}}</h5>
+                  <h6 style="color: black;">{{item3.BlogAuthor}}</h6>
+                </a>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+    <section class="blog-posts">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="all-blog-posts">
+              <div class="row">
+                {% for blog in blogs %}
+                <!-- Blog viewing starts here -->
+                <div class="col-lg-12">
+                  <div class="blog-post">
+                    <div class="blog-thumb">
+                      <img style="height: 400px;" src="{{blog.BlogImage}}" alt="">
+                    </div>
+                    <div class="down-content">
+                      <span>{{blog.BlogCategory}}</span>
+                      <a href="/blogs/read-blog/{{blog.BlogSlug}}"><h4>{{blog.BlogName}}</h4></a>
+                      <ul class="post-info">
+                        <li><a>{{blog.BlogAuthor}}</a></li>
+                        <li><a>{{blog.BlogDateAdded}}</a></li>
+                        <li><a>{{blog.Likes.count}} Likes</a></li>
+                      </ul>
+                      <p>{{blog.BlogDescription}}</p>
+                      <div class="post-options">
+                        <div class="row">
+                          <div class="col-6">
+                            <!-- ... -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                  <!-- Blog viewing ends here -->
+                  {% endfor %}
+
+                <div class="col-lg-12">
+                  <div class="main-button">
+                    <a href="/blogs/blogs">View All Blogs</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="sidebar">
+              <div class="row">                 
+                <div class="col-lg-12">
+                  <div class="sidebar-item recent-posts">
+                    <div class="sidebar-heading">
+                      <h2>Recent Posts</h2>
+                    </div>
+                    <div class="content">
+                      <ul>
+                        {% for recentblogs in blogs %}
+                        <li><a href="/blogs/read-blog/{{recentblogs.BlogSlug}}">
+                          <h5>{{recentblogs.BlogName}}</h5>
+                          <span>{{recentblogs.BlogDateAdded}}</span>
+                        </a></li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </section>
+      {% endblock %}
