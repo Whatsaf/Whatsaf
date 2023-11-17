@@ -18,8 +18,10 @@ import string
 from WhatsafPortal.details import country_codes
 from WhatsafBlogs.models import Blog
 
+# mainDomain = "https://whatsaf.in"
 mainDomain = "http://localhost:8000"
-# C:\Users\A\AppData\Local\Google\Chrome\User Data
+# C:\Users\Administrator\AppData\Local\Google\Chrome\User Data
+# chromeLoc = "C:\\Users\\Administrator\\AppData\\Local\\Google\\Chrome\\User Data\\Profile {profNum}"
 chromeLoc = "C:\\Users\\A\\AppData\\Local\\Google\\Chrome\\User Data\\Profile {profNum}"
 
 
