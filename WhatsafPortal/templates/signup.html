@@ -353,8 +353,7 @@
             <label for="">  I accept the <a href="/tc">Terms and Conditions</a></label>
         </div>
         <center>
-          <div class='spinner-displayer'></div>
-          <br>
+            <p id="displayText" style="display: hidden; color: chocolate;"></p>
         </center>
             <div class="form-group">
                 <button type="submit">Sign UP</button>
@@ -366,51 +365,13 @@
     </center>
     <br><br>
 
-    <style>
-      * {
-margin: 0;
-padding: 0;
-}
-
-.loader {
-display: none;
-top: 50%;
-left: 50%;
-position: absolute;
-transform: translate(-50%, -50%);
-}
-
-.loading {
-border: 2px solid #ccc;
-width: 60px;
-height: 60px;
-border-radius: 50%;
-border-top-color: #1ecd97;
-border-left-color:  #1ecd97;
-animation: spin 1s infinite ease-in;
-justify-content: center;
-align-items: center;
-}
-
-@keyframes spin {
-0% {
-transform: rotate(0deg);
-}
-100% {
-transform: rotate(360deg);
-}
-}
-    </style>
     <script>
-      function spinner() {
-const spinnerDisplayer = document.querySelector('.spinner-displayer');
-const btn = document.getElementById('form');
-btn.addEventListener('submit', () => {
-spinnerDisplayer.classList.add('loading');
-})
-}
-
-spinner();
-    </script>
+        document.getElementById('form').addEventListener('submit', function(event) {
+          var inputText = "Please wait a moment as this process may take up to a minute. Thank you for your patience!";
+          var displayParagraph = document.getElementById('displayText');
+          displayParagraph.textContent = inputText;
+          displayParagraph.style.display = 'block';
+        });
+      </script>
 
 {% endblock %}

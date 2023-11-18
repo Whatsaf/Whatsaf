@@ -26,4 +26,5 @@ urlpatterns = [
     path("change-password", ChangePassword, name = "ChangePassword"),
     path("tc", TermsConditions, name = "TermsConditions"),
     path("u/<str:slug>", userview, name = "UserView"),
+    path("unsubscribe/<str:slug>", unsubscribe, name = "Unsubscribe"),
 ]
