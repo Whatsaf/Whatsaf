@@ -21,8 +21,8 @@ class UserDetail(models.Model):
     OTP2 = models.CharField(max_length=100, blank=True, default="")
     Verification = models.BooleanField(default=False)
     Premium = models.BooleanField(default=False)
-    Monthly = models.BooleanField(default=False)
-    Yearly = models.BooleanField(default=False)
+    AlphaPremium = models.BooleanField(default=False)
+    GigaPremium = models.BooleanField(default=False)
     Trial = models.BooleanField(default=False)
 
     def __str__(self) -> str:
@@ -42,6 +42,8 @@ class Feature(models.Model):
     Link = models.CharField(max_length=100)
     Image = models.CharField(max_length=1000)
     Stable = models.BooleanField(default=False)
+    AlphaPremium = models.BooleanField(default=False)
+    GigaPremium = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return self.Name
