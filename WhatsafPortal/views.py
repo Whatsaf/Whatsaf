@@ -56,7 +56,8 @@ def index(request):
         if UserDetail.objects.get(User = request.user).Verification == False:
             dropUser = User.objects.get(username = request.user)
             dropUser.delete()
-    return render(request, "index.html", {"faq" : FAQ.objects.all(), "blog" : Blog.objects.all()})
+    #return render(request, "index.html", {"faq" : FAQ.objects.all(), "blog" : Blog.objects.all()})
+    return render(request, "unavail.html")
 
 def error(request, exception):
     return render(request, "error.html")
