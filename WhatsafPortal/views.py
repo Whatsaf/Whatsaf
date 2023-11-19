@@ -56,7 +56,7 @@ def index(request):
         if UserDetail.objects.get(User = request.user).Verification == False:
             dropUser = User.objects.get(username = request.user)
             dropUser.delete()
-    #return render(request, "index.html", {"faq" : FAQ.objects.all(), "blog" : Blog.objects.all()})
+    return render(request, "index.html", {"faq" : FAQ.objects.all(), "blog" : Blog.objects.all()})
     return render(request, "unavail.html")
 
 def error(request, exception):
@@ -103,6 +103,13 @@ def register(request):
         pwd2 = request.POST["pwd2"]
         eotp = otpGen()
         potp = otpGen()
+        newsletter = request.POST.get("newsletters")
+        if newsletter == "on":
+            cr = Newsletter(Email = email)
+            cr.save()
+            pass
+        else:
+            pass
         if pwd1 != pwd2:
            messages.warning(request, "Passwords not matching. PLease try again.")
            return redirect("SignUP")
@@ -279,12 +286,21 @@ def EditUserProfile(request):
         email = request.POST["email"]
         phone = request.POST["phone"]
         pwd = request.POST["password"]
+        nw = request.POST.get("nw")
         user_details = User.objects.get(username = request.user)
         dob = request.POST["dob"]
         if check_password(pwd, request.user.password):
+            if nw == "on":
+                cr = Newsletter(Email = email)
+                cr.save()
+                pass
+            else:
+                pass
+            if request.user.email != email:
+                sendEmail(email, "Verify Email", f"Hello, {request.user.first_name}. We received a request for change in email from your account. Kindly <a href='https://whatsaf.in/ve/{request.user.email}+{email}'>Click Here</a> to verify that it's you. Thank you for your kind cooperation! Have a great day ahead...")
+                messages.success(request, "We have sent you an email at your new email address. Please checkout that in order to update it.")
             userdet = User.objects.get(username=request.user)
             userdet.first_name = name
-            userdet.email = email
             userdet.save()
             userDet = User.objects.get(username=request.user)
             user_det = UserDetail.objects.get(User = userDet)
@@ -348,6 +364,25 @@ def userview(request, slug):
     userdet = UserDetail.objects.get(User = user)
     return render(request, "user-view.html", {"data" : userdet, "user" : user})
 
-def unsubscribe(request, em):
+def unsubscribe(request, slug):
+    if Newsletter.objects.filter(Email = slug).exists():
+        nw = Newsletter.objects.get(Email = slug)
+        nw.delete()
+        messages.success(request, "We are feeling very sad to see you go. If it was a mistake do subscribe again at your Profile.")
+        return redirect("HomePage")
+    messages.success(request, "This email is not registered for newsletters. Subscribe Now at your Profile!!")
     return redirect("HomePage")
 
+def VerifyEmail(request, slug):
+    el = slug.split("+")
+    if request.user.is_authenticated:
+        if request.user.email == el[0]:
+            user = User.objects.get(username = request.user)
+            user.email = el[1]
+            user.save()
+            messages.success(request, "Your email has been succesfully updated.")
+        else:
+            messages.warning(request, "Your new email has not been verified.")
+        return redirect("HomePage")
+    messages.warning(request, "Kindly open this link in the same device where you are signed in to verify yourself.")
+    return redirect("HomePage")

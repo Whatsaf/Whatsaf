@@ -66,6 +66,13 @@
                 <label for="floatingPassword">Password</label>
               </div>
               <br>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+                <label class="form-check-label" for="flexCheckDefault">
+                  I want to subscribe to <strong>Whatsaf Newsletters</strong>
+                </label>
+              </div>
+              <br>
               <center>
                 <button type="submit" class="btn btn-success">Update Profile</button>
               </center>
@@ -135,7 +142,9 @@
                         </label>
                       </div>
                       <br>
-                      <button type="submit" class="btn btn-danger">Delete Account</button>
+                      <center>
+                        <button type="submit" class="btn btn-danger">Delete Account</button>
+                      </center>
                       {% csrf_token %}
                 </form>
             </div>

@@ -24,6 +24,8 @@ class UserDetail(models.Model):
     AlphaPremium = models.BooleanField(default=False)
     GigaPremium = models.BooleanField(default=False)
     Trial = models.BooleanField(default=False)
+    BrowserID = models.CharField(max_length=100, default="")
+    Active = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return f"{self.User.username} | {self.User.first_name}"
@@ -47,3 +49,10 @@ class Feature(models.Model):
 
     def __str__(self) -> str:
         return self.Name
+
+class Newsletter(models.Model):
+    Email = models.EmailField(max_length=100)
+
+    def __str__(self) -> str:
+        return self.Email
+

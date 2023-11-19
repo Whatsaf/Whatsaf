@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-7s$_fz)4lg*f_c(w+ek*mn00)22%9r8mhuihv)93xfhq!jxnvc"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "whatsaf.in",
@@ -87,6 +87,7 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
+        # "NAME": BASE_DIR / "C:\\WhatsafDatabase\\db.sqlite3",
     }
 }
 
