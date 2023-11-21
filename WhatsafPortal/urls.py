@@ -28,4 +28,5 @@ urlpatterns = [
     path("u/<str:slug>", userview, name = "UserView"),
     path("ve/<str:slug>", VerifyEmail, name = "VerifyEmail"),
     path("unsubscribe/<str:slug>", unsubscribe, name = "Unsubscribe"),
+    path("activate", activate, name = "Activate"),
 ]

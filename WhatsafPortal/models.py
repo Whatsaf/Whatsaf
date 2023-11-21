@@ -40,6 +40,7 @@ class FAQ(models.Model):
 
 class Feature(models.Model):
     Name = models.CharField(max_length=1000)
+    Short = models.CharField(max_length=1000, default="")
     Desc = models.TextField(max_length=1000)
     Link = models.CharField(max_length=100)
     Image = models.CharField(max_length=1000)
