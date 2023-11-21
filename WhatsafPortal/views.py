@@ -214,6 +214,7 @@ def buy(request, slug):
     return redirect("SignIN")
 
 def dashboard(request):
+    time.sleep(4)
     if request.user.is_authenticated:
         if UserDetail.objects.get(User = request.user).Verification == False:
             dropUser = User.objects.get(username = request.user)
@@ -401,15 +402,12 @@ def VerifyEmail(request, slug):
 def activate(request):
     time.sleep(3)
     userdet = UserDetail.objects.get(User = User.objects.get(username = request.user))
-    number = userdet.Phone
+    number = f"{country_codes[userdet.Country]}{userdet.Phone}"
     id = userdet.BrowserID
-
     try:
         temp_user_data_dir = f"C:\\Users\\A\\AppData\\Local\\Google\\Chrome\\User Data\\Profile {id}"
-
         options = webdriver.ChromeOptions()
         options.add_argument(f'--user-data-dir={temp_user_data_dir}')
-
         wd = webdriver.Chrome(options=options)
         wd.get("https://web.whatsapp.com")
         time.sleep(20)
@@ -419,6 +417,8 @@ def activate(request):
         time.sleep(2)
         input_1=wd.find_element(by=By.ID, value= 'inp')
         time.sleep(2)
+        for i in range(5):
+            input_1.send_keys(Keys.BACKSPACE)
         input_1.send_keys(number)
         input_1.send_keys(Keys.ENTER)
         time.sleep(8)

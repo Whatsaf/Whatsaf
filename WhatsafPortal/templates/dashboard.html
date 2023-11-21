@@ -47,7 +47,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <h6 id="text"></h6>
+        <h6 style="color: red" id="text"></h6>
         <video style="max-width: 100%;" src="{% static 'vid/Whatsaf Video.mp4' %}" autoplay="autoplay" loop muted></video>
       </div>
     </div>
@@ -56,7 +56,7 @@
 <script>
 function clicker() {
   setTimeout(function() {
-    document.getElementById('text').innerHTML += 'We have E-Mailed you the WhatsApp Link to device Code. Your privacy and security is our priority.';
+    document.getElementById('text').innerHTML += 'We have E-Mailed you the WhatsApp Link to device Code. Your privacy and security is our priority. (Code will expire within a minute)';
 }, 33000);
 }
 </script>
