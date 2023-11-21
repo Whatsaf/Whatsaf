@@ -11,7 +11,7 @@ def actv(brid):
     options.add_argument(f'--user-data-dir={temp_user_data_dir}')
     wd = webdriver.Chrome(options=options)
     wd.get("https://web.whatsapp.com")
-    time.sleep(10)
+    time.sleep(5)
     text = wd.execute_script("""let textContent = document.querySelector('div').innerText;
                       return textContent""")
     if text.__contains__("Use WhatsApp on your computer"):
