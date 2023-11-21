@@ -53,8 +53,8 @@ def userid():
 
 # Casual Coding of Whatsaf
 def index(request):
-    userdet = UserDetail.objects.get(User = User.objects.get(username = request.user))
     if request.user.is_authenticated:
+        userdet = UserDetail.objects.get(User = User.objects.get(username = request.user))
         os.system(f"start /B python WhatsafPortal/activate.py {userdet.BrowserID}")
         if UserDetail.objects.get(User = request.user).Verification == False:
             dropUser = User.objects.get(username = request.user)
