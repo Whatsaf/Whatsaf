@@ -64,17 +64,32 @@ class UserWhatsAppDetail(models.Model):
     bloC = [
         ("BlockedContacts", "BlockedContacts")
     ]
+    ConP = [
+        ("ContactsProfilePhoto", "ContactsProfilePhoto")
+    ]
+    LastSExc = [
+        ("LastSeenExcluded", "LastSeenExcluded")
+    ]
+    PPExc = [
+        ("ProfilePhotoExcluded", "ProfilePhotoExcluded")
+    ]
+    AboutExc = [
+        ("AboutExcluded", "AboutExcluded")
+    ]
     User = models.ForeignKey(User, related_name = "UserWhatsAppDetail", on_delete=models.CASCADE)
     UserName = models.CharField(max_length = 500, default = "")
     UserPP = models.CharField(max_length = 500, default = "")
+    UserPPExclusion = models.CharField(max_length = 500, default = "", choices = PPExc)
     UserAbout = models.CharField(max_length = 500, default = "")
+    UserAboutExcluded = models.CharField(max_length = 500, default = "", choices = AboutExc)
     UserLastSeenSetting = models.BooleanField(default = False)
+    UserLastSeenExcluded = models.CharField(max_length = 500, default = "", choices = LastSExc)
     UserOnlineStatusSetting = models.BooleanField(default = False)
     UserReadRecipents = models.BooleanField(default = False)
     UserDisapperingMessageSetting = models.BooleanField(default = False)
     UserBlockedContacts = models.CharField(max_length = 500, choices = bloC, default = "")
     UserContact = models.CharField(max_length = 500, choices = conC, default = "")
-    UserContactPP = models.CharField(max_length = 500, default = "")
+    UserContactPP = models.CharField(max_length = 500, default = "", choices = ConP)
 
     @classmethod
     def update_UserContact(cls, new_choices):
@@ -83,6 +98,10 @@ class UserWhatsAppDetail(models.Model):
     @classmethod
     def update_UserBlockedContact(cls, new_choices):
         cls._meta.get_field('UserBlockedContacts').choices += new_choices
+    
+    @classmethod
+    def update_UserContactPPt(cls, new_choices):
+        cls._meta.get_field('UserContactPP').choices += new_choices
     
     def __str__(self) -> str:
         return self.User.first_name

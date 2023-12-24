@@ -224,26 +224,25 @@ def dashboard(request):
         # importing user module
         imported_module = importlib.import_module(f"{package_name}.{request.user.username}")
 
-        # saving details of user
-        details = getattr(imported_module, attribute_name[2])
-        datael = details()
-        print(datael)
-
-        addingWhatsappData = UserWhatsAppDetail.objects.get(User = User.objects.get(username = request.user.username))
-        print(addingWhatsappData.UserContact)
-        addingWhatsappData.update_UserContact([(i, i) for i in datael.get("Contacts")])
-        addingWhatsappData.UserPP = datael.get("ProfilePhoto")
-        addingWhatsappData.UserName = datael.get("Name")
-        addingWhatsappData.UserAbout = datael.get("About")
-
-        addingWhatsappData.save()
-
         # checking user activity
         attribute_to_use = getattr(imported_module, attribute_name[1])
         attribute_to_use()
         userdet = UserDetail.objects.get(User = User.objects.get(username = request.user))
         if attribute_to_use():
             userdet.Active = True
+            # saving details of user
+            details = getattr(imported_module, attribute_name[2])
+            datael = details()
+
+            addingWhatsappData = UserWhatsAppDetail.objects.get(User = User.objects.get(username = request.user.username))
+            print(addingWhatsappData.UserContact)
+            addingWhatsappData.update_UserContact([(i, i) for i in datael.get("Contacts")])
+            addingWhatsappData.UserPP = datael.get("ProfilePhoto")
+            addingWhatsappData.UserName = datael.get("Name")
+            addingWhatsappData.UserAbout = datael.get("About")
+
+            addingWhatsappData.save()
+            
         else:
             userdet.Active = False
         userdet.save()

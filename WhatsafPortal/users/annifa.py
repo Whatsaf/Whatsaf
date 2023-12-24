@@ -8,7 +8,9 @@ from email.header import Header
 from email.utils import formataddr
 import smtplib
 import psutil
-import sqlite3
+import subprocess
+import requests
+import os
 
 id = "26672558"
 number = "+916355853038"
@@ -37,21 +39,21 @@ def check_chrome_profile_open():
 
 chrome_open = check_chrome_profile_open()
 if chrome_open:
-    quit()
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option("debuggerAddress", "localhost:8090")
+    options.add_argument("minimize")
+    wd = webdriver.Chrome(options=options)
+    wd.minimize_window()
+    wd.get("https://web.whatsapp.com")
 else:
-    pass
-
-options = webdriver.ChromeOptions()
-options.add_experimental_option("detach", True)
-options.add_argument(f'--user-data-dir={temp_user_data_dir}')
-wd = webdriver.Chrome(options=options)
-wd.get("https://web.whatsapp.com")
+    subprocess.Popen(r'"C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=8090 --user-data-dir="C:\Users\A\AppData\Local\Google\Chrome\User Data\Profile 26672558"')
+    options = webdriver.ChromeOptions()
+    options.add_argument("minimize")
+    options.add_experimental_option("debuggerAddress", "localhost:8090")
+    wd = webdriver.Chrome(options=options)
+    wd.get("https://web.whatsapp.com")
 
 def active():
-    # wd.execute_script("""window.open('https://web.whatsapp.com', 
-    #                       'secondtab');""")
-    # wd.switch_to.window("secondtab")
-    options.add_argument("--incognito")
     time.sleep(30)
     wd.execute_script('document.getElementsByClassName("_3iLTh")[0].click();')
     time.sleep(20)
@@ -76,7 +78,136 @@ def active():
 def check():
     text = wd.execute_script("""let textContent = document.querySelector('div').innerText;
                       return textContent""")
-    if text.__contains__("Use WhatsApp on your computer"):
+    if text.__contains__("Use WhatsApp on your computer") or text.__contains__("Enter code on phone"):
         return False
     else:
         return True
+    
+def getData():
+    time.sleep(0.3)
+    dataDict = {
+                "Contacts" : [],
+                "ProfilePhoto" : "",
+                "Name" : "",
+                "About" : "",
+                "LastSeenStatus" : "",
+                "OnlineSeenStatus" : "",
+                "PPStatus" : "",
+                "AboutStatus" : "",
+                "ReadRecipents" : None,
+                "BlockedContacts" : "",
+                "ContactPP" : []
+            }
+    length = wd.execute_script('''var len = document.getElementsByClassName("lhggkp7q ln8gz9je rx9719la").length
+                               return len''')
+    time.sleep(0.5)
+    for i in range(length):
+        wd.execute_script(f'document.getElementsByClassName("lhggkp7q ln8gz9je rx9719la")[{i}].setAttribute("id", "chat{i}");')
+        chats = wd.find_element(by=By.ID, value= f'chat{i}')
+        chats.click()
+        wd.execute_script(f'document.getElementsByClassName("_2au8k")[0].setAttribute("id", "info");')
+        info = wd.find_element(by=By.ID, value= f'info')
+        info.click()
+        try:
+            name = wd.execute_script(f'''var name = document.getElementsByClassName("l7jjieqr cw3vfol9 _11JPr selectable-text copyable-text")[0].innerText
+                            return name''')
+            phone = wd.execute_script(f'''var phone = document.getElementsByClassName("enbbiyaj e1gr2w1z hp667wtd")[0].innerText
+                            return phone''')
+            dataDict.get("Contacts").append(f"{name}|{phone}")
+        except Exception:
+            continue
+    
+    # fetching profile photo
+    wd.execute_script('document.getElementsByClassName("g0rxnol2 f804f6gw ln8gz9je ppled2lx gfz4du6o r7fjleex g9p5wyxn i0tg5vk9 aoogvgrq o2zu3hjb jpthtbts lyqpd7li bs7a17vp csshhazd _11JPr")[0].click()')
+    ppLink = wd.execute_script('''var ppLink = document.getElementsByClassName("_11JPr")[0].src
+                               return ppLink''')
+    userName = wd.execute_script('''var name = document.getElementsByClassName("f804f6gw ln8gz9je")[0].innerText
+                               return name''')
+    about = wd.execute_script('''var about = document.getElementsByClassName("f804f6gw ln8gz9je")[1].innerText
+                               return about''')
+
+    r = requests.get(ppLink, stream=True)
+    file_path = f"F:\\Whatsaf\\Whatsaf\\RequiredImages\\WhatsAppProfilePhoto\\{id}.enc"
+    with open(file_path, 'wb') as f:
+        for chunk in r.iter_content(chunk_size=1024 * 8):
+            if chunk:
+                f.write(chunk)
+                f.flush()
+                os.fsync(f.fileno())
+    dataDict["ProfilePhoto"] = f"F:\Whatsaf\Whatsaf\RequiredImages\WhatsAppProfilePhoto\{id}.enc"
+    dataDict["Name"] = userName
+    dataDict["About"] = about
+
+    wd.execute_script('''
+                      document.getElementsByClassName('kk3akd72 dmous0d2 fewfhwl7 ajgl1lbb ltyqj8pj')[0].click();
+                      document.getElementsByClassName("_3ndVb fbgy3m38 ft2m32mm oq31bsqd nu34rnf1")[4].click();''')
+    wd.execute_script('''document.getElementsByClassName('iWqod _1MZM5 _2BNs3')[4].click();''')
+    wd.execute_script('''document.getElementsByClassName('tvf2evcx m0h2a7mj lb5m6g5c j7l1k36l ktfrpxia nu7pwgvd p357zi0d dnb887gk gjuq5ydh i2cterl7 ac2vgrno f8m0rgwh elxb2u3l mx771qyo cm280p3y fbgy3m38 oq31bsqd qmxv8cnq')[1].click();''')
+    ariaCheckLabel = {
+        1 : "Everyone",
+        3 : "MyContacts",
+        5 : "Excluded",
+        7  : "Nobody"
+    }
+
+    # Last Seen
+    wd.execute_script("document.getElementsByClassName('daad4uqs p9a4hubg ml4r5409 gndfcl4n p357zi0d')[0].click()")
+    for i in range(8):
+        if i % 2 != 0:
+            vari = wd.execute_script(f"""var vari = document.getElementsByTagName('button')[{i}].ariaChecked;
+                              return vari""")
+            if vari == "true":
+                status = ariaCheckLabel.get(i)
+                break
+    dataDict["LastSeenStatus"] = status
+
+    # Online Status
+    for i in range(8, 12):
+        if i % 2 != 0:
+            vari = wd.execute_script(f"""var vari = document.getElementsByTagName('button')[{i}].ariaChecked;
+                              return vari""")
+            if vari == "true":
+                if i == 9:
+                    status = True
+                elif i == 11:
+                    status = False
+                else:
+                    pass
+    dataDict["OnlineSeenStatus"] = str(status)
+
+    # Profile Photo Status
+    wd.execute_script("document.getElementsByClassName('kk3akd72 dmous0d2 fewfhwl7 ajgl1lbb ltyqj8pj')[0].click();")
+    wd.execute_script("document.getElementsByClassName('daad4uqs p9a4hubg ml4r5409 gndfcl4n p357zi0d')[1].click()")
+    for i in range(8):
+        if i % 2 != 0:
+            vari = wd.execute_script(f"""var vari = document.getElementsByTagName('button')[{i}].ariaChecked;
+                              return vari""")
+            if vari == "true":
+                status = ariaCheckLabel.get(i)
+                break
+    dataDict["PPStatus"] = status
+
+    # About Status
+    wd.execute_script("document.getElementsByClassName('kk3akd72 dmous0d2 fewfhwl7 ajgl1lbb ltyqj8pj')[0].click();")
+    wd.execute_script("document.getElementsByClassName('daad4uqs p9a4hubg ml4r5409 gndfcl4n p357zi0d')[2].click()")
+    for i in range(8):
+        if i % 2 != 0:
+            vari = wd.execute_script(f"""var vari = document.getElementsByTagName('button')[{i}].ariaChecked;
+                              return vari""")
+            if vari == "true":
+                status = ariaCheckLabel.get(i)
+                break
+    dataDict["AboutStatus"] = status
+
+    # Read Recipents
+    wd.execute_script("document.getElementsByClassName('kk3akd72 dmous0d2 fewfhwl7 ajgl1lbb ltyqj8pj')[0].innerText")
+    try:
+        wd.execute_script("document.getElementsByClassName('lhggkp7q hdpg1tjz ptatjang dj32rci9 g965lu3b q4zabkcz q0ohlrvj av59jz02 grf4wkbn hir9ny8g bs7a17vp b73q89nx em5jvqoa a21kwdn3 ehl15zf9')[0].innerText")
+        status = True
+    except Exception:
+        status = False
+    dataDict["ReadRecipents"] = status
+
+    print(dataDict)
+
+    return dataDict

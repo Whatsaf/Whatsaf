@@ -42,12 +42,14 @@ if chrome_open:
     options = webdriver.ChromeOptions()
     options.add_experimental_option("debuggerAddress", "localhost:8080")
     wd = webdriver.Chrome(options=options)
+    wd.minimize_window()
     wd.get("https://web.whatsapp.com")
 else:
     subprocess.Popen(r'"C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=8080 --user-data-dir="C:\Users\A\AppData\Local\Google\Chrome\User Data\Profile 84586292"')
     options = webdriver.ChromeOptions()
     options.add_experimental_option("debuggerAddress", "localhost:8080")
     wd = webdriver.Chrome(options=options)
+    wd.minimize_window()
     wd.get("https://web.whatsapp.com")
 
 def active():
@@ -81,13 +83,19 @@ def check():
         return True
     
 def getData():
-    # fetching contacts
     time.sleep(0.3)
     dataDict = {
                 "Contacts" : [],
                 "ProfilePhoto" : "",
                 "Name" : "",
                 "About" : "",
+                "LastSeenStatus" : "",
+                "OnlineSeenStatus" : "",
+                "PPStatus" : "",
+                "AboutStatus" : "",
+                "ReadRecipents" : None,
+                "BlockedContacts" : "",
+                "ContactPP" : []
             }
     length = wd.execute_script('''var len = document.getElementsByClassName("lhggkp7q ln8gz9je rx9719la").length
                                return len''')
@@ -128,5 +136,98 @@ def getData():
     dataDict["ProfilePhoto"] = f"F:\Whatsaf\Whatsaf\RequiredImages\WhatsAppProfilePhoto\{id}.enc"
     dataDict["Name"] = userName
     dataDict["About"] = about
+
+    wd.execute_script('''
+                      document.getElementsByClassName('kk3akd72 dmous0d2 fewfhwl7 ajgl1lbb ltyqj8pj')[0].click();
+                      document.getElementsByClassName("_3ndVb fbgy3m38 ft2m32mm oq31bsqd nu34rnf1")[4].click();''')
+    wd.execute_script('''document.getElementsByClassName('iWqod _1MZM5 _2BNs3')[4].click();''')
+    wd.execute_script('''document.getElementsByClassName('tvf2evcx m0h2a7mj lb5m6g5c j7l1k36l ktfrpxia nu7pwgvd p357zi0d dnb887gk gjuq5ydh i2cterl7 ac2vgrno f8m0rgwh elxb2u3l mx771qyo cm280p3y fbgy3m38 oq31bsqd qmxv8cnq')[1].click();''')
+    ariaCheckLabel = {
+        1 : "Everyone",
+        3 : "MyContacts",
+        5 : "Excluded",
+        7  : "Nobody"
+    }
+
+    # Last Seen
+    wd.execute_script("document.getElementsByClassName('daad4uqs p9a4hubg ml4r5409 gndfcl4n p357zi0d')[0].click()")
+    for i in range(8):
+        if i % 2 != 0:
+            vari = wd.execute_script(f"""var vari = document.getElementsByTagName('button')[{i}].ariaChecked;
+                              return vari""")
+            if vari == "true":
+                status = ariaCheckLabel.get(i)
+                break
+    dataDict["LastSeenStatus"] = status
+
+    # Online Status
+    for i in range(8, 12):
+        if i % 2 != 0:
+            vari = wd.execute_script(f"""var vari = document.getElementsByTagName('button')[{i}].ariaChecked;
+                              return vari""")
+            if vari == "true":
+                if i == 9:
+                    status = True
+                elif i == 11:
+                    status = False
+                else:
+                    pass
+    dataDict["OnlineSeenStatus"] = str(status)
+
+    # Profile Photo Status
+    wd.execute_script("document.getElementsByClassName('kk3akd72 dmous0d2 fewfhwl7 ajgl1lbb ltyqj8pj')[0].click();")
+    wd.execute_script("document.getElementsByClassName('daad4uqs p9a4hubg ml4r5409 gndfcl4n p357zi0d')[1].click()")
+    for i in range(8):
+        if i % 2 != 0:
+            vari = wd.execute_script(f"""var vari = document.getElementsByTagName('button')[{i}].ariaChecked;
+                              return vari""")
+            if vari == "true":
+                status = ariaCheckLabel.get(i)
+                break
+    dataDict["PPStatus"] = status
+
+    # About Status
+    wd.execute_script("document.getElementsByClassName('kk3akd72 dmous0d2 fewfhwl7 ajgl1lbb ltyqj8pj')[0].click();")
+    wd.execute_script("document.getElementsByClassName('daad4uqs p9a4hubg ml4r5409 gndfcl4n p357zi0d')[2].click()")
+    for i in range(8):
+        if i % 2 != 0:
+            vari = wd.execute_script(f"""var vari = document.getElementsByTagName('button')[{i}].ariaChecked;
+                              return vari""")
+            if vari == "true":
+                status = ariaCheckLabel.get(i)
+                break
+    dataDict["AboutStatus"] = status
+
+    # Read Recipents
+    wd.execute_script("document.getElementsByClassName('kk3akd72 dmous0d2 fewfhwl7 ajgl1lbb ltyqj8pj')[0].innerText")
+    try:
+        wd.execute_script("document.getElementsByClassName('lhggkp7q hdpg1tjz ptatjang dj32rci9 g965lu3b q4zabkcz q0ohlrvj av59jz02 grf4wkbn hir9ny8g bs7a17vp b73q89nx em5jvqoa a21kwdn3 ehl15zf9')[0].innerText")
+        status = True
+    except Exception:
+        status = False
+    dataDict["ReadRecipents"] = status
+
+    # About Status
+    wd.execute_script("document.getElementsByClassName('kk3akd72 dmous0d2 fewfhwl7 ajgl1lbb ltyqj8pj')[0].click();")
+    wd.execute_script("document.getElementsByClassName('daad4uqs p9a4hubg ml4r5409 gndfcl4n p357zi0d')[2].click()")
+    for i in range(8):
+        if i % 2 != 0:
+            vari = wd.execute_script(f"""var vari = document.getElementsByTagName('button')[{i}].ariaChecked;
+                              return vari""")
+            if vari == "true":
+                status = ariaCheckLabel.get(i)
+                break
+    dataDict["AboutStatus"] = status
+
+    # Disappering messages
+    wd.execute_script("document.getElementsByClassName('kk3akd72 dmous0d2 fewfhwl7 ajgl1lbb ltyqj8pj')[0].innerText")
+    try:
+        wd.execute_script("document.getElementsByClassName('lhggkp7q hdpg1tjz ptatjang dj32rci9 g965lu3b q4zabkcz q0ohlrvj av59jz02 grf4wkbn hir9ny8g bs7a17vp b73q89nx em5jvqoa a21kwdn3 ehl15zf9')[0].innerText")
+        status = True
+    except Exception:
+        status = False
+    dataDict["ReadRecipents"] = status
+
+    print(dataDict)
 
     return dataDict
