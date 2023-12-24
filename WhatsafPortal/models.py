@@ -57,3 +57,32 @@ class Newsletter(models.Model):
     def __str__(self) -> str:
         return self.Email
 
+class UserWhatsAppDetail(models.Model):
+    conC = [
+        ("Contacts", "Contacts")
+    ]
+    bloC = [
+        ("BlockedContacts", "BlockedContacts")
+    ]
+    User = models.ForeignKey(User, related_name = "UserWhatsAppDetail", on_delete=models.CASCADE)
+    UserName = models.CharField(max_length = 500, default = "")
+    UserPP = models.CharField(max_length = 500, default = "")
+    UserAbout = models.CharField(max_length = 500, default = "")
+    UserLastSeenSetting = models.BooleanField(default = False)
+    UserOnlineStatusSetting = models.BooleanField(default = False)
+    UserReadRecipents = models.BooleanField(default = False)
+    UserDisapperingMessageSetting = models.BooleanField(default = False)
+    UserBlockedContacts = models.CharField(max_length = 500, choices = bloC, default = "")
+    UserContact = models.CharField(max_length = 500, choices = conC, default = "")
+    UserContactPP = models.CharField(max_length = 500, default = "")
+
+    @classmethod
+    def update_UserContact(cls, new_choices):
+        cls._meta.get_field('UserContact').choices += new_choices
+    
+    @classmethod
+    def update_UserBlockedContact(cls, new_choices):
+        cls._meta.get_field('UserBlockedContacts').choices += new_choices
+    
+    def __str__(self) -> str:
+        return self.User.first_name
